@@ -1,0 +1,72 @@
+/* Arka planı bulanıklaştıran overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(36, 23, 68, 0.85); /* Navbar renginde koyu transparan */
+  backdrop-filter: blur(8px); /* Arkadaki içeriği bulanıklaştırır */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.modal-text {
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Logout Butonu: Turuncudan Mora Gradyan */
+.btn-logout {
+  background: linear-gradient(90deg, #edae49 0%, #b054b1 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cancel Butonu: Beyaz */
+.btn-cancel {
+  background: white;
+  color: #4a3f6b;
+  border: none;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* Masaüstü Ayarı */
+@media (min-width: 768px) {
+  .modal-text {
+    font-size: 1.5rem;
+  }
+  .modal-content {
+    max-width: 400px;
+  }
+}

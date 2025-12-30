@@ -11,8 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import authReducer from "../features/auth/authSlice";
-import currencyReducer from "../features/currency/currencySlice";
+import currencyReducer from "../redux/currency/currencySlice.js";
 
 // Persist sadece auth için
 const authPersistConfig = {
@@ -22,7 +21,7 @@ const authPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, authReducer),
+  auth: persistReducer(authPersistConfig),
   currency: currencyReducer,
 });
 

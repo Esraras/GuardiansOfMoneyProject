@@ -1,0 +1,14 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-exit" viewBox="0 0 32 32">
+<path fill="#fff" style="fill: var(--color1, #fff)" opacity="0.6" d="M20.051 23.237h2.499v4.997c0 2.067-1.681 3.748-3.748 3.748h-15.054c-2.066 0-3.748-1.681-3.748-3.748v-24.486c0-2.066 1.681-3.748 3.748-3.748h15.054c2.067 0 3.748 1.681 3.748 3.748v4.997h-2.499v-4.997c0-0.689-0.56-1.249-1.249-1.249h-15.054c-0.689 0-1.249 0.561-1.249 1.249v24.486c0 0.689 0.561 1.249 1.249 1.249h15.054c0.689 0 1.249-0.561 1.249-1.249v-4.997zM26.111 10.102l-1.767 1.767 2.873 2.874h-16.161v2.499h16.161l-2.873 2.873 1.767 1.767 5.889-5.889-5.889-5.89z"></path>
+</symbol>
+<symbol id="icon-Money-Guard" viewBox="0 0 33 32">
+<path fill="#ffb627" style="fill: var(--color2, #ffb627)" d="M22.415 4.297c-2.314-0.553-4.628-1.66-6.364-3.32-1.736 1.66-4.050 2.767-6.364 3.32 0.579 4.981 2.314 8.301 6.364 11.068 4.050-2.767 6.364-6.087 6.364-11.068z"></path>
+<path fill="#fbfbfb" style="fill: var(--color3, #fbfbfb)" d="M20.101 24.903l-16.2-18.262v8.854l12.728 13.835 3.471-4.427z"></path>
+<path fill="#fbfbfb" style="fill: var(--color3, #fbfbfb)" d="M21.837 23.243l6.943-7.748v-8.301l-10.993 12.175 4.050 3.874z"></path>
+<path fill="#fbfbfb" style="fill: var(--color3, #fbfbfb)" d="M22.416 26.010v4.981l6.364-7.194v-4.981l-6.364 7.194z"></path>
+<path fill="#fbfbfb" style="fill: var(--color3, #fbfbfb)" d="M10.266 26.010l-6.364-7.194v4.981l6.364 7.194v-4.981z"></path>
+</symbol>
+</defs>
+</svg>

@@ -1,0 +1,92 @@
+/* --- VARSAYILAN: MOBİL STİLLER (0px - 767px) --- */
+.navbar {
+  background-color: #241744;
+  color: white;
+  padding: 10px 15px; /* Mobilde daha dar padding */
+  font-family: sans-serif;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-name {
+  font-size: 16px; /* Mobilde daha küçük font */
+  font-weight: 600;
+  margin: 0;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.exit-btn {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+.exit-btn span{
+  display: none; 
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* --- MASAÜSTÜ: (768px ve Üzeri) --- */
+@media (min-width: 768px) {
+  .navbar {
+    padding: 20px 40px;
+  }
+
+  .brand-name {
+    font-size: 22px; 
+  }
+
+  .user-name {
+    font-size: 16px;
+  }
+
+  .user-actions {
+    gap: 20px;
+  }
+
+  .divider {
+    height: 24px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}

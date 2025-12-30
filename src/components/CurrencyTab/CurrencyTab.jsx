@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCurrencyRates } from "../../features/currency/currencyOperations.js";
+import { fetchCurrencyRates } from "../../redux/currency/currencyOperations.js";
 import styles from "./CurrencyTab.module.css";
-import { MOCK_RATES } from "../../features/currency/currencySlice.js";
+import { MOCK_RATES } from "../../redux/currency/currencySlice.js";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 const CurrencyTab = () => {

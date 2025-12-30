@@ -1,68 +1,101 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "modern-normalize/modern-normalize.css"; /* bring in modern-normalize.css styles */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-body {
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
-  display: flex;
-  place-items: center;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill::first-line {
+  transition: background-color 5000s ease-in-out 0s;
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+input:-moz-autofill,
+textarea:-moz-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+input:-ms-autofill,
+textarea:-ms-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.container {
   min-width: 320px;
-  min-height: 100vh;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    /* padding-top: 40px; */
   }
-  button {
-    background-color: #f9f9f9;
+
+  section .container {
+    padding-top: 40px;
   }
 }

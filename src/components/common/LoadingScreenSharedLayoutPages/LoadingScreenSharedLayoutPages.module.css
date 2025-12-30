@@ -1,0 +1,31 @@
+.loadingScreenSharedLayoutPages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin-top: 40px;
+}
+
+.loadingScreenSharedLayoutPages img {
+  width: 150px;
+  height: 150px;
+}
+
+@media screen and (min-width: 768px) {
+  .loadingScreenSharedLayoutPages img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loadingScreenSharedLayoutPages {
+    margin-top: 0;
+  }
+
+  .loadingScreenSharedLayoutPages img {
+    width: 250px;
+    height: 250px;
+  }
+}

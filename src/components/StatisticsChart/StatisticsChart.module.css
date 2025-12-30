@@ -1,0 +1,31 @@
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(251, 251, 251, 1);
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.chartContainer .balance {
+  position: absolute;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 27px;
+}
+
+@media (min-width: 768px) {
+  .chartContainer {
+    width: 336px;
+    height: 336px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .chartContainer {
+    width: 288px;
+    height: 288px;
+  }
+}

@@ -1,0 +1,102 @@
+.statisticsTable {
+  width: 100%;
+}
+
+.statisticsTable .tableHead {
+  color: rgba(251, 251, 251, 1);
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: rgba(82, 59, 126, 0.6);
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.statisticsTable .noData {
+  margin-top: 16px;
+  color: grey;
+  color: rgba(255, 255, 255, 0.6);
+  /* color: rgba(127, 255, 0, 1); */
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  font-style: italic;
+  text-align: center;
+}
+
+.categorySummary .categoryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  padding: 14px 16px;
+  color: rgba(251, 251, 251, 1);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.categoryRow .category {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.category div:first-of-type {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+}
+
+.total {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  color: rgba(251, 251, 251, 1);
+}
+
+.totalExpenses,
+.totalIncome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalExpenses span:nth-of-type(2) {
+  color: rgba(255, 134, 141, 1);
+}
+
+.totalIncome span:nth-of-type(2) {
+  color: rgba(255, 182, 39, 1);
+}
+
+@media screen and (min-width: 768px) {
+  .statisticsTable {
+    width: 336px;
+  }
+
+  .statisticsTable .noData {
+    font-size: 19px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .statisticsTable {
+    width: 395px;
+  }
+}

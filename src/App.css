@@ -1,0 +1,86 @@
+.button {
+  border-radius: 20px;
+  width: 300px;
+  height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+}
+.color_btn {
+  background: var(--button-gradient);
+  color: var(--text-color);
+}
+
+.white_btn {
+  background: var(--button-color);
+  color: var(--text-button);
+}
+.btn_delete {
+  border-radius: 20px;
+  padding: 4px 12px;
+  width: 69px;
+  height: 29px;
+  font-size: 14px;
+  text-align: center;
+  background: var(--button-gradient);
+  color: var(--text-color);
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+}
+.btn_plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--button-gradient);
+  border-radius: 100%;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal_backdrop {
+  border-radius: 8px;
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbar styles */
+body {
+  scrollbar-color: #9e40ba #623f8b;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #623f8b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9e40ba;
+  height: 20px;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .app {
+    height: 100vh;
+    overflow: auto;
+  }
+  .block-scroll {
+    overflow: hidden;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .app {
+    overflow: hidden;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .app {
+    overflow: hidden;
+  }
+}

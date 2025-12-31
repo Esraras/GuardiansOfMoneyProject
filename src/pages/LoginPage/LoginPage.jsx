@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { loginSchema } from "../../schemas/schemas";
 
 import AuthForm from "../../components/AuthForm/AuthForm";
-import { loginThunk } from "../../redux/Auth/operations";
+import { loginThunk } from "../../redux/auth/operations";
 import { toast } from "react-toastify";
 
 const LoginPage = () => {

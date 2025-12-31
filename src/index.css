@@ -1,31 +1,22 @@
-@import "modern-normalize/modern-normalize.css"; /* bring in modern-normalize.css styles */
+@import url(./utils/variables.css);
 
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
+:root {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  font-weight: 400;
+  overflow: hidden;
+
+  color: var(--text-color);
+  background-color: black;
+
+  min-height: 100vh;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.poppins-regular {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.poppins-semibold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: normal;
+  -webkit-text-size-adjust: 100%;
 }
 
 h1,
@@ -38,64 +29,30 @@ p {
   margin: 0;
 }
 
+p:last-child {
+  margin-bottom: 0;
+}
+
 ul,
 ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill::first-line {
-  transition: background-color 5000s ease-in-out 0s;
-  background-color: transparent !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+a {
+  color: currentColor;
+  text-decoration: none;
 }
 
-input:-moz-autofill,
-textarea:-moz-autofill {
-  transition: background-color 5000s ease-in-out 0s;
-  background-color: transparent !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
-input:-ms-autofill,
-textarea:-ms-autofill {
-  transition: background-color 5000s ease-in-out 0s;
-  background-color: transparent !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-.react-datepicker-wrapper {
-  width: 100%;
-}
-
-.container {
-  min-width: 320px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .container {
-    width: 1280px;
-    padding-left: 16px;
-    padding-right: 16px;
-    display: flex;
-    /* padding-top: 40px; */
-  }
-
-  section .container {
-    padding-top: 40px;
-  }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

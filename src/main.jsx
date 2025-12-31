@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "modern-normalize";
 import "./index.css";
 
-import App from "./App";
+import App from "./components/App/App";
 
 import { persistor, store } from "./redux/store";
 

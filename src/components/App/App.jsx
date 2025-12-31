@@ -1,44 +1,62 @@
-import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
-import { PrivateRoute } from "../../routes/PrivateRoute";
-import { RestrictedRoute } from "../../routes/RestrictedRoute";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { refreshThunk } from "../../redux/auth/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
 import "./App.css";
 
-const RegistrationPage = lazy(() => import("../../pages//RegistrationPage/RegistrationPage"));
-const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
-const DashboardPage = lazy(() => import("../../pages/DashboardPage/DashboardPage"));
+import PublicRoute from "../../routes/PublicRoute";
+import PrivateRoute from "../../routes/PrivateRoute";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage";
+import DashboardPage from "../../pages/DashboardPage/DashboardPage";
+import clsx from "clsx";
+import {
+  selectIsAddModalOpen,
+  selectIsEditModalOpen,
+} from "../../redux/Modals/slice";
 
-export default function App() {
+function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshThunk());
+  }, [dispatch]);
+
+  const isEditOpen = useSelector(selectIsEditModalOpen);
+  const isAddOpen = useSelector(selectIsAddModalOpen);
 
   return (
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<RegistrationPage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/DashboardPage"
-                component={<RegistrationPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/DashboardPage"
-                component={<LoginPage />}
-              />
-            }
-          />
-          <Route
-            path="/DashboardPage"
-            element={
-              <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
-            }
-          />
-        </Routes>
-      </Suspense>
+    <div className={clsx("app", isEditOpen || (isAddOpen && "block-scroll"))}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <PublicRoute>
+              <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+
+        <Route path="*" element={<Navigate to="/" />}></Route>
+      </Routes>
+    </div>
   );
 }
+
+export default App;

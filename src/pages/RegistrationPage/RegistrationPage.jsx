@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { registerSchema } from "../../schemas/schemas";
 
 import AuthForm from "../../components/AuthForm/AuthForm";
-import { registerThunk } from "../../redux/Auth/operations";
+import { registerThunk } from "../../redux/auth/operations";
 
 const initialValues = {
     username: "",

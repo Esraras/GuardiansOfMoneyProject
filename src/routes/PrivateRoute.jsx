@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 
 import { selectIsLoggedIn } from "../redux/Auth/selectors";
@@ -10,3 +11,4 @@ function PrivateRoute({ children }) {
 }
 
 export default PrivateRoute;
+

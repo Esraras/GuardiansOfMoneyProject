@@ -1,18 +1,47 @@
-import { Routes, Route } from "react-router-dom";
-import StatisticsPage from "../../pages/StatisticsPage/StatisticsPage";
-import StatisticsChart from "../StatisticsChart/StatisticsChart";
-import StatisticsTable from "../StatisticsTable/StatisticsTable";
-import StatisticsDashboard from "../StatisticsDashboard/StatisticsDashboard";
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import { PrivateRoute } from "../../routes/PrivateRoute";
+import { RestrictedRoute } from "../../routes/RestrictedRoute";
+import "./App.css";
 
-const App = () => {
+const RegistrationPage = lazy(() =>
+  import("../../pages//RegistrationPage/RegistrationPage")
+);
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
+const DashboardPage = lazy(() =>
+  import("../../pages/DashboardPage/DashboardPage")
+);
+
+export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<StatisticsPage />} />
-      <Route path="/chart" element={<StatisticsChart />} />
-      <Route path="/table" element={<StatisticsTable />} />
-      <Route path="/dashboard" element={<StatisticsDashboard />} />
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/" element={<RegistrationPage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/DashboardPage"
+              component={<RegistrationPage />}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute
+              redirectTo="/DashboardPage"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="/DashboardPage"
+          element={
+            <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
+          }
+        />
+      </Routes>
+    </Suspense>
   );
-};
-
-export default App;
+}

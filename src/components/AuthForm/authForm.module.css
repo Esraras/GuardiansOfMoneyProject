@@ -25,7 +25,6 @@
 
 @media screen and (min-width: 768px) {
   .register {
-    background-image: url("../../../public/img/register-tablet.webp");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -34,7 +33,6 @@
 
 @media screen and (min-width: 768px) {
   .login {
-    background-image: url("../../../public/img/login-tablet.webp");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -43,14 +41,10 @@
 
 @media screen and (min-width: 1280px) {
   .register {
-    background-image: url("../../../public/img/register-desktop.webp");
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .login {
-    background-image: url("../../../public/img/login-desktop.webp");
-  }
 }
 
 @media screen and (min-width: 768px) {

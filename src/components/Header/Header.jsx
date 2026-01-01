@@ -1,29 +1,41 @@
-import React from 'react';
-import './Header.module.css';
+import { useState } from "react";
+import css from "./Header.module.css";
+import { Icon } from "../../Icons";
+import LogoutModal from "../LogoutModal/LogoutModal";
 
 const Header = () => {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  localStorage.setItem("token", showLogoutModal);
+
+  function LogoutHandle() {
+    setShowLogoutModal(true);
+    localStorage.removeItem("token");
+  }
+
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="logo-group">
-            <svg className="icon">
-              <use href="./images/icons.svg#icon-exit" />
-            </svg>
-          <h1 className="brand-name">Money Guard</h1>
+    <>
+      <nav className={css.navbar}>
+      <div className={css.navbarContainer}>
+        <div className={css.logoGroup}>
+          <Icon id="#icon-logo_mobile" className={css.icon}></Icon>
         </div>
 
-        <div className="user-actions">
-          <span className="user-name">Name</span>
-          <div className="divider"></div>
-          <button className="exit-btn">
-            <span>Exit</span>
-            <svg className="icon">
-              <use href="./images/icons.svg#icon-exit" />
-            </svg>
+        <div className={css.userActions}>
+          <span className={css.userName}>Name</span>
+          <div className={css.divider}></div>
+          <button className={css.exitBtn} onClick={LogoutHandle}>
+            <Icon id="#icon-exit" className={css.iconExit} />
+            <span className={css.spanExit}>Exit</span>
           </button>
         </div>
       </div>
-    </nav>
+      </nav>
+
+      {showLogoutModal && (
+        <LogoutModal onClose={() => setShowLogoutModal(false)}/>
+      )}
+    </>
   );
 };
 

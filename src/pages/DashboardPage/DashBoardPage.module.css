@@ -1,0 +1,26 @@
+.dashboardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.sideBar{
+    max-width: 480px
+}
+
+  .divider{
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+   .sideBar{
+    flex-direction: row;
+   }
+  }
+  @media (min-width: 1280px) {
+    .divider {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  }

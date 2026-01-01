@@ -1,0 +1,88 @@
+.balanceCard {
+  /* Tam Ölçüler */
+  width: 280px;
+  height: 80px;
+  box-sizing: border-box;
+  
+  /* Arka Plan ve Kenarlar */
+  background: rgba(255, 255, 255, 0.1); /* Görseldeki hafif şeffaf mor doku */
+  backdrop-filter: blur(10px); /* Arka planı bulanıklaştırma efekti */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* İçerik Yerleşimi */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif; /* Modern ve okunaklı bir font */
+  color: white;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: 10px; /* Küçük ve zarif etiket */
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.amountRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.currency {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.balance {
+  font-size: 24px; /* 80px yüksekliğe tam sığacak ideal boyut */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .balanceCard {
+    width: 336px;
+    height: 80px;
+  }
+  
+  .label {
+    font-size: 12px;
+  }
+  
+  .currency {
+    font-size: 24px;
+  }
+  
+  .balance {
+    font-size: 28px;
+  }
+  .balanceContent{
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .balanceCard {
+    width: 480px;
+    height: 80px;
+    border-radius: 0;
+    left: 0;
+  }
+  
+  .label {
+    font-size: 14px;
+  }
+  
+  .currency {
+    font-size: 28px;
+  }
+  
+  .balance {
+    font-size: 32px;
+  }
+}

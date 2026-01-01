@@ -1,26 +1,53 @@
-.dashboardContainer{
+.dashboardContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     padding: 20px;
 }
-.sideBar{
-    max-width: 480px
+.sideBar {
+    max-width: 480px;
 }
 
-  .divider{
+.divider {
     display: none;
-  }
-
-  @media (min-width: 768px) {
-   .sideBar{
-    flex-direction: row;
-   }
-  }
-  @media (min-width: 1280px) {
+}
+.currencyChart {
+    display: none;
+}
+.balance {
+    display: none;
+}
+@media (min-width: 768px) {
+    .currencyChart {
+        display: flex;
+    }
+    .sideBar {
+        flex-direction: row;
+        padding: 20px 0;
+    }
+    .dashboardContainer {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .balance {
+        display: flex;
+    }
+}
+@media (min-width: 1280px) {
+    .sideBar {
+        padding: 20px 0;
+    }
+    .dashboardContainer {
+        padding: 0;
+    }
     .divider {
-    width: 1px;
-    height: 24px;
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  }
+        display: flex;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.2); /* Çizgi rengi */
+        margin: 40px 0; /* Çizginin en üstten ve en alttan biraz boşluklu olması için */
+        align-self: stretch;
+
+        margin-left: 480px;
+    }
+}

@@ -1,4 +1,4 @@
-import style from "./customDropIndicator.module.css";
+import style from "./CustomDropIndicator.module.css";
 
 function CustomDropIndicator({ up }) {
   return (

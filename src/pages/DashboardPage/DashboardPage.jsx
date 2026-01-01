@@ -1,26 +1,50 @@
+import { useState } from "react";
 import Header from "../../components/Header/Header";
 import ButtonAddTransactions from "../../components/ButtonAddTransactions/ButtonAddTransactions";
 import CurrencyAreaChart from "../../components/CurrencyAreaChart/CurrencyAreaChart";
 import css from "./DashBoardPage.module.css";
- 
+import Navigation from "../../components/Navigation/Navigation";
+import HomeTab from "../../components/Tabs/HomeTab/HomeTab";
+import StaticsTab from "../../components/Tabs/StatisticsTab/StatisticsTab";
+import Balance from "../../components/Balance/Balance";
 const DashboardPage = () => {
+    const [activeTab, setActiveTab] = useState("home");
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case "home":
+                return <HomeTab />;
+            case "statistics":
+                return <StaticsTab />;
+            case "currency":
+                return <CurrencyAreaChart />;
+            default:
+                return <HomeTab />;
+        }
+    };
+
     return (
         <>
             <Header />
             <div className={css.dashboardContainer}>
                 <div className={css.sideBar}>
-                    {/* navigations */}
-                    {/*balance*/}
-                    <CurrencyAreaChart />
+                    <Navigation activeTab={activeTab} onChange={setActiveTab} />
+                    <div className={css.balance}>
+                        <Balance />
+                    </div>
+                    <div className={css.currencyChart}>
+                        <CurrencyAreaChart />
+                    </div>
                 </div>
-                <div className={css.divider}></div>
-                <div>
-                    {/*import home tab */}
-                    {/* import statics tab*/}
+
+                <div className={css.mainContent}>
+                    {renderContent()}
                     <ButtonAddTransactions />
                 </div>
             </div>
+            <div className={css.divider}></div>
         </>
     );
 };
+
 export default DashboardPage;

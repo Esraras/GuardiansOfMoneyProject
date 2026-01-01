@@ -1,6 +1,8 @@
 @import url(./utils/variables.css);
 
 :root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
   font-size: 18px;
   letter-spacing: 0.1em;
   line-height: 1.5;
@@ -9,6 +11,10 @@
 
   color: var(--text-color);
   background-color: black;
+  background-image: url("../public/img/gradient-desktop.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
   min-height: 100vh;
 
@@ -17,6 +23,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@media only screen and (max-width: 767.98px) {
+  :root {
+    background-image: url("../public/img/gradient-mobile.webp");
+  }
+}
+@media only screen and (min-width: 768px) {
+  :root {
+    background-image: url("../public/img/gradient-tablet.webp");
+  }
+}
+@media only screen and (min-width: 1280px) {
+  :root {
+    background-image: url("../public/img/gradient-desktop.webp");
+  }
 }
 
 h1,

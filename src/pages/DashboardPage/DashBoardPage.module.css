@@ -18,16 +18,17 @@
 .balance {
     display: none;
 }
+
 @media (min-width: 768px) {
     .currencyChart {
         display: flex;
     }
     .sideBar {
+        display: flex;
         flex-direction: row;
         padding: 20px 0;
     }
     .dashboardContainer {
-        flex-direction: row;
         align-items: flex-start;
     }
     .balance {
@@ -37,8 +38,10 @@
 @media (min-width: 1280px) {
     .sideBar {
         padding: 20px 0;
+        flex-direction: column;
     }
     .dashboardContainer {
+        flex-direction: row;
         padding: 0;
     }
     .divider {

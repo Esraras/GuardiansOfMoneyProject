@@ -28,9 +28,14 @@ const DashboardPage = () => {
             <Header />
             <div className={css.dashboardContainer}>
                 <div className={css.sideBar}>
-                    <Navigation activeTab={activeTab} onChange={setActiveTab} />
-                    <div className={css.balance}>
-                        <Balance />
+                    <div className={css.navBalance}>
+                        <Navigation
+                            activeTab={activeTab}
+                            onChange={setActiveTab}
+                        />
+                        <div className={css.balance}>
+                            <Balance />
+                        </div>
                     </div>
                     <div className={css.currencyChart}>
                         <CurrencyAreaChart />

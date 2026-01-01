@@ -2,10 +2,12 @@ import { useState } from "react";
 import css from "./Header.module.css";
 import { Icon } from "../../Icons";
 import LogoutModal from "../LogoutModal/LogoutModal";
-
+import { selectUser } from "../../redux/auth/selectors.js";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+  const user = useSelector(selectUser);
   localStorage.setItem("token", showLogoutModal);
 
   function LogoutHandle() {
@@ -22,7 +24,7 @@ const Header = () => {
         </div>
 
         <div className={css.userActions}>
-          <span className={css.userName}>Name</span>
+          <span className={css.userName}>{user.name}</span>
           <div className={css.divider}></div>
           <button className={css.exitBtn} onClick={LogoutHandle}>
             <Icon id="#icon-exit" className={css.iconExit} />

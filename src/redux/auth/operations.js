@@ -16,7 +16,10 @@ export const registerThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
-      thunkApi.rejectWithValue(error.message);
+      const serverData = error.response?.data;
+      const serverMsg =
+        serverData?.message || (serverData ? JSON.stringify(serverData) : null);
+      return thunkApi.rejectWithValue(serverMsg || error.message);
     }
   }
 );
@@ -32,7 +35,9 @@ export const loginThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
@@ -45,7 +50,9 @@ export const logoutThunk = createAsyncThunk(
       removeToken();
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
@@ -64,7 +71,9 @@ export const refreshThunk = createAsyncThunk(
       const { data } = await userTransactionsApi.get("/api/users/current");
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
@@ -76,7 +85,9 @@ export const getBalanceThunk = createAsyncThunk(
       const { data } = await userTransactionsApi.get("/api/users/current");
       return data.balance;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );

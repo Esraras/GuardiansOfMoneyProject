@@ -21,11 +21,12 @@ const RegistrationPage = () => {
             .unwrap()
             .then((data) => {
                 toast.success(
-                    `Registration is success ${data.user.name}, welcome!`
+                    `Registration is success ${data.user.username}, welcome!`
                 );
             })
-            .catch(() => {
-                toast.error("Invalid credentials");
+            .catch((err) => {
+                const message = err || "Invalid credentials";
+                toast.error(message);
             });
 
         resetForm();

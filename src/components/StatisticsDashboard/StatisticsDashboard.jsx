@@ -5,7 +5,7 @@ import {
   Months_OPTIONS,
   YEARS_OPTIONS,
 } from "../../constants/TransactionConstants";
-import { fetchTransactionsSummary } from "../../redux/transactions/operations";
+import { fetchTransactionsSummary } from "../../redux/Statistics/operations";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();

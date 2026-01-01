@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import {
   selectTransactionsSummary,
   selectFilteredCategories,
-} from "../../redux/transactions/selectors";
+} from "../../redux/Statistics/selectors";
 import { getTrasactionCategoryColor } from "../../constants/TransactionConstants";
-import { selectIsLoading } from "../../redux/transactions/selectors";
+import { selectIsLoading } from "../../redux/Statistics/selectors";
 import LoadingSpinner from "../common/LoadingSpinner/Loader";
 
 const StatisticsTable = () => {

@@ -9,7 +9,7 @@ import {
   selectFilteredCategories,
   selectIsLoading,
   selectTransactionsSummary,
-} from "../../redux/transactions/selectors";
+} from "../../redux/Statistics/selectors";
 import { getTrasactionCategoryColor } from "../../constants/TransactionConstants";
 import LoadingSpinner from "../common/LoadingSpinner/Loader";
 

@@ -1,4 +1,4 @@
-import styles from "./AddTransactionForm.module.css";
+import s from "./AddTransactionForm.module.css";
 import { useState } from "react";
 import clsx from "clsx";
 import DatePicker from "react-datepicker";
@@ -7,16 +7,81 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
+import { selectCategories } from "../../redux/Statistics/selectors";
 import { useSelector } from "react-redux";
 import Select from "react-select";
+import { customStyles } from "./customStyles";
 import { useDispatch } from "react-redux";
 import { addTransactions } from "../../redux/transactions/operations";
 import { closeAddModal } from "../../redux/Modals/slice";
-// import { selectCategories } from "../../redux/Statistics/selectors";
 import CustomDropIndicator from "../CustomDropIndicator/CustomDropIndicator";
+import { toast } from "react-toastify";
 
 function AddTransactionForm() {
-  const categories = useSelector(selectCategories);
+  const categoriesFromAPI = useSelector(selectCategories);
+
+  const defaultCategories = [
+    {
+      id: "c9d9e447-1b83-4238-8712-edc77b18b739",
+      name: "Main expenses",
+      type: "EXPENSE",
+    },
+    {
+      id: "27eb4b75-9a42-4991-a802-4aefe21ac3ce",
+      name: "Products",
+      type: "EXPENSE",
+    },
+    {
+      id: "3caa7ba0-79c0-40b9-ae1f-de1af1f6e386",
+      name: "Car",
+      type: "EXPENSE",
+    },
+    {
+      id: "bbdd58b8-e804-4ab9-bf4f-695da5ef64f4",
+      name: "Self care",
+      type: "EXPENSE",
+    },
+    {
+      id: "76cc875a-3b43-4eae-8fdb-f76633821a34",
+      name: "Child care",
+      type: "EXPENSE",
+    },
+    {
+      id: "128673b5-2f9a-46ae-a428-ec48cf1effa1",
+      name: "Household products",
+      type: "EXPENSE",
+    },
+    {
+      id: "1272fcc4-d59f-462d-ad33-a85a075e5581",
+      name: "Education",
+      type: "EXPENSE",
+    },
+    {
+      id: "c143130f-7d1e-4011-90a4-54766d4e308e",
+      name: "Leisure",
+      type: "EXPENSE",
+    },
+    {
+      id: "719626f1-9d23-4e99-84f5-289024e437a8",
+      name: "Other expenses",
+      type: "EXPENSE",
+    },
+    {
+      id: "3acd0ecd-5295-4d54-8e7c-d3908f4d0402",
+      name: "Entertainment",
+      type: "EXPENSE",
+    },
+    {
+      id: "063f1132-ba5d-42b4-951d-44011ca46262",
+      name: "Income",
+      type: "INCOME",
+    },
+  ];
+
+  const categories =
+    categoriesFromAPI && categoriesFromAPI.length > 0
+      ? categoriesFromAPI
+      : defaultCategories;
   const [isChecked, setIsChecked] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const handleChange = () => {
@@ -36,17 +101,13 @@ function AddTransactionForm() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const currentDate = new Date();
-  const formattedDate = format(
-    currentDate,
-    "EEE MMM dd yyyy HH:mm:ss 'GMT'XXX (zzz)"
-  );
 
   const schema = yup.object().shape({
     amount: yup.number().required("Number invalid value"),
     transactionDate: yup
       .date()
       .required("Date is required")
-      .default(() => new Date(formattedDate)),
+      .default(() => currentDate),
     switch: yup.boolean(),
     category: yup.string(),
     comment: yup.string().required(),
@@ -63,29 +124,48 @@ function AddTransactionForm() {
 
   const onSubmit = (data) => {
     if (!isChecked) {
-      const categoryId = categories.filter((el) => el.name === "Income");
-      data.categoryId = categoryId[0].id;
+      // Income
+      const incomeCategory = categories.find((el) => el.type === "INCOME");
+      if (!incomeCategory) {
+        toast.error("Income category not found");
+        return;
+      }
+      data.categoryId = incomeCategory.id;
       data.type = "INCOME";
       data.amount = Math.abs(data.amount);
-    } else if (selectedOption) {
-      data.categoryId = selectedOption.value;
-      data.type = "EXPENSE";
-      data.amount = Math.abs(data.amount) * -1;
-    } else if (!selectedOption) {
-      const categoryId = categories.filter((el) => el.name === "Main expenses");
-      data.categoryId = categoryId[0].id;
+    } else {
+      // Expense
+      if (selectedOption) {
+        data.categoryId = selectedOption.value;
+      } else {
+        const defaultExpenseCategory = categories.find(
+          (el) => el.name === "Main expenses"
+        );
+        if (!defaultExpenseCategory) {
+          toast.error("Default expense category not found");
+          return;
+        }
+        data.categoryId = defaultExpenseCategory.id;
+      }
       data.type = "EXPENSE";
       data.amount = Math.abs(data.amount) * -1;
     }
 
-    const originalDate = new Date(data.transactionDate);
-    const formattedDate = format(originalDate, "yyyy-MM-dd");
-    data.transactionDate = formattedDate;
+    const date = new Date(data.transactionDate);
+    data.transactionDate = format(date, "yyyy-MM-dd");
 
     delete data.switch;
+    delete data.category;
 
-    dispatch(addTransactions(data));
-    dispatch(closeAddModal());
+    dispatch(addTransactions(data))
+      .unwrap()
+      .then(() => {
+        toast.success("Transaction added successfully");
+        dispatch(closeAddModal());
+      })
+      .catch((error) => {
+        toast.error(error || "Failed to add transaction");
+      });
   };
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -99,142 +179,32 @@ function AddTransactionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <div className={styles.switch__wrapper}>
-        {!isChecked ? (
-          <span className={clsx(styles.span_text, styles.income_active)}>
-            Income
-          </span>
-        ) : (
-          <span className={styles.span_text}>Income</span>
-        )}
-        <label htmlFor="switch" className={styles.switch}>
+    <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+      <div className={s.switch__wrapper}>
+        <span className={clsx(s.span_text, !isChecked && s.income_active)}>
+          Income
+        </span>
+        <label htmlFor="switch" className={s.switch}>
           <input
             {...register("switch")}
             type="checkbox"
             id="switch"
             checked={isChecked}
             onChange={handleChange}
-            className={styles.switch__input}
+            className={s.switch__input}
           />
-          {isChecked ? (
-            <span className={styles.switch__slider}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="74"
-                height="74"
-                viewBox="0 0 74 74"
-                fill="none"
-              >
-                <g filter="url(#filter0_d_61_794)">
-                  <circle cx="37" cy="31" r="22" fill="#FF868D" />
-                </g>
-                <path d="M27 31L47 31" stroke="white" strokeWidth="2" />
-                <defs>
-                  <filter
-                    id="filter0_d_61_794"
-                    x="0"
-                    y="0"
-                    width="74"
-                    height="74"
-                    filterUnits="userSpaceOnUse"
-                    colorInterpolationFilters="sRGB"
-                  >
-                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix
-                      in="SourceAlpha"
-                      type="matrix"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                      result="hardAlpha"
-                    />
-                    <feOffset dy="6" />
-                    <feGaussianBlur stdDeviation="7.5" />
-                    <feColorMatrix
-                      type="matrix"
-                      values="0 0 0 0 1 0 0 0 0 0.52549 0 0 0 0 0.552941 0 0 0 0.5 0"
-                    />
-                    <feBlend
-                      mode="normal"
-                      in2="BackgroundImageFix"
-                      result="effect1_dropShadow_61_794"
-                    />
-                    <feBlend
-                      mode="normal"
-                      in="SourceGraphic"
-                      in2="effect1_dropShadow_61_794"
-                      result="shape"
-                    />
-                  </filter>
-                </defs>
-              </svg>
-            </span>
-          ) : (
-            <span className={styles.switch__slider}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="74"
-                height="74"
-                viewBox="0 0 74 74"
-                fill="none"
-              >
-                <g filter="url(#filter0_d_60_139)">
-                  <circle cx="37" cy="31" r="22" fill="#FFB627" />
-                </g>
-                <path d="M37 21V41" stroke="#FBFBFB" strokeWidth="2" />
-                <path d="M27 31L47 31" stroke="#FBFBFB" strokeWidth="2" />
-                <defs>
-                  <filter
-                    id="filter0_d_60_139"
-                    x="0"
-                    y="0"
-                    width="74"
-                    height="74"
-                    filterUnits="userSpaceOnUse"
-                    colorInterpolationFilters="sRGB"
-                  >
-                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix
-                      in="SourceAlpha"
-                      type="matrix"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                      result="hardAlpha"
-                    />
-                    <feOffset dy="6" />
-                    <feGaussianBlur stdDeviation="7.5" />
-                    <feColorMatrix
-                      type="matrix"
-                      values="0 0 0 0 1 0 0 0 0 0.780392 0 0 0 0 0.152941 0 0 0 0.5 0"
-                    />
-                    <feBlend
-                      mode="normal"
-                      in2="BackgroundImageFix"
-                      result="effect1_dropShadow_60_139"
-                    />
-                    <feBlend
-                      mode="normal"
-                      in="SourceGraphic"
-                      in2="effect1_dropShadow_60_139"
-                      result="shape"
-                    />
-                  </filter>
-                </defs>
-              </svg>
-            </span>
-          )}
+          <span className={s.switch__slider}></span>
         </label>
-        {isChecked ? (
-          <span className={clsx(styles.span_text, styles.expense_active)}>
-            Expense
-          </span>
-        ) : (
-          <span className={styles.span_text}>Expense</span>
-        )}
+        <span className={clsx(s.span_text, isChecked && s.expense_active)}>
+          Expense
+        </span>
       </div>
       {isChecked && (
-        <div className={styles.comment}>
+        <div className={s.comment}>
           <Select
             classNamePrefix="react-select"
-            className={styles.select_form}
+            styles={customStyles}
+            className={s.select_form}
             defaultValue={selectDefaultValue}
             onChange={setSelectedOption}
             options={categoriesForSelect}
@@ -253,42 +223,80 @@ function AddTransactionForm() {
           />
         </div>
       )}
-      <div className={styles.sum_data_wrap}>
-        <div className={styles.sum_wrap}>
+      <div className={s.sum_data_wrap}>
+        <div className={s.sum_wrap}>
           <input
             {...register("amount")}
             type="number"
             autoComplete="off"
             placeholder="0.00"
-            className={styles.sum}
+            className={s.sum}
+            autoFocus
+            onKeyPress={(event) => {
+              if (!/[0-9.]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
           />
           {errors.amount && (
-            <span className={styles.comment_err}>{"Enter a number"}</span>
+            <span className={s.comment_err}>{"Enter a number"}</span>
           )}
         </div>
-        <div
-          className={styles.data_wrap}
-          onClick={() => setIsDatePickerOpen(true)}
-        >
+        <div className={s.data_wrap} onClick={() => setIsDatePickerOpen(true)}>
           <Controller
             name="transactionDate"
             control={control}
             render={({ field }) => (
               <>
                 <DatePicker
-                  selected={field.value || formattedDate}
+                  selected={field.value || currentDate}
                   onChange={(date) => field.onChange(date)}
                   dateFormat="dd.MM.yyyy"
                   open={isDatePickerOpen}
                   onClickOutside={() => setIsDatePickerOpen(false)}
-                  className={styles.customDatePicker}
-                  calendarClassName={styles.calendarClassName}
-                  maxDate={formattedDate}
+                  className={s.customDatePicker}
+                  calendarClassName={s.calendarClassName}
+                  maxDate={currentDate}
+                  showPopperArrow={false}
+                  popperClassName={s.calendarPopper}
+                  locale="en-US"
+                  renderCustomHeader={({
+                    date,
+                    decreaseMonth,
+                    increaseMonth,
+                    prevMonthButtonDisabled,
+                    nextMonthButtonDisabled,
+                  }) => (
+                    <div className={s.customHeader}>
+                      <button
+                        type="button"
+                        onClick={decreaseMonth}
+                        disabled={prevMonthButtonDisabled}
+                        className={s.navButton}
+                      >
+                        {"<"}
+                      </button>
+                      <div className={s.currentMonth}>
+                        {date.toLocaleString("en-US", {
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={increaseMonth}
+                        disabled={nextMonthButtonDisabled}
+                        className={s.navButton}
+                      >
+                        {">"}
+                      </button>
+                    </div>
+                  )}
                 />
               </>
             )}
           />
-          <div className={styles.svg_wrap}>
+          <div className={s.svg_wrap}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -311,23 +319,23 @@ function AddTransactionForm() {
           </div>
         </div>
       </div>
-      <div className={clsx(styles.comment_bottom)}>
+      <div className={clsx(s.comment_bottom)}>
         <input
           {...register("comment")}
           type="text"
-          className={styles.input}
+          className={s.input}
           placeholder="Comment"
           autoComplete="off"
         />
         {errors.comment && (
-          <span className={styles.comment_err}>{"Enter a comment"}</span>
+          <span className={s.comment_err}>{"Enter a comment"}</span>
         )}
       </div>
-      <button className={clsx(styles.btn, styles.btn_add)} type="submit">
+      <button className={clsx(s.btn, s.btn_add)} type="submit">
         Add
       </button>
       <button
-        className={clsx(styles.btn, styles.btn_cancel)}
+        className={clsx(s.btn, s.btn_cancel)}
         type="button"
         onClick={() => {
           dispatch(closeAddModal());

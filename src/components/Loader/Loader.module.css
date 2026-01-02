@@ -1,0 +1,50 @@
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  width: 100%;
+  background: rgba(74, 86, 226, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.loaderContainer :global(.vortex-wrapper) {
+  animation: fadeIn 0.5s ease-in;
+  transform-origin: center center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .loaderContainer {
+    min-height: 300px;
+  }
+  .loaderContainer :global(.vortex-wrapper) {
+    transform: scale(0.8);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .loaderContainer {
+    min-height: 250px;
+  }
+  .loaderContainer :global(.vortex-wrapper) {
+    transform: scale(0.7);
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .loaderContainer {
+    padding: 1rem;
+  }
+}

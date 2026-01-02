@@ -1,171 +1,219 @@
-.row {
+.transactionItem {
   display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  gap: 8px;
+  flex-direction: column;
+  padding: 12px 15px;
+  margin: 0 auto 8px;
+  width: 280px;
 
-  color: var(--text-color);
+  background-color: rgba(82, 59, 126, 0.6);
+  border-radius: 8px;
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
 
-  position: relative;
+  color: var(--white-color);
+  font-size: 14px;
 }
 
-.row::after {
+.transactionItem:last-child {
+  margin-bottom: 0;
+}
+
+.income .accent {
+  color: var(--yellow-color);
+}
+.expense .accent {
+  color: var(--red-color);
+}
+
+.mobileOnly {
   display: block;
-  content: "";
-  width: calc(100% - 40px);
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.41);
-
-  position: absolute;
-  bottom: 0;
 }
 
-.row:last-child::after {
+.mobileRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.mobileLabel {
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--white-color);
+  opacity: 0.6;
+}
+
+.mobileValue {
+  text-align: right;
+}
+
+.mobileActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.desktopOnly {
   display: none;
 }
 
-.btn_edit {
+.editButton {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  width: 24px;
+  height: 24px;
 }
 
-#icon-edit {
-  stroke: var(--text-color);
-  size: 14px;
-  width: 14px;
-  height: 14px;
+.editButton:hover {
+  color: var(--white-color);
+  transform: scale(1.1);
 }
 
-.colored {
-  color: rgba(251, 251, 251, 1);
-  background-image: none;
-  background: linear-gradient(
-    96.76deg,
-    #ffc727 -16.42%,
-    #9e40ba 97.04%,
-    #7000ff 150.71%
-  );
-  transition: all 1s ease 0s;
+.deleteButton {
+  background: linear-gradient(to right, #ffc727, #ff7a85);
+  color: var(--white-color);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 70px;
 }
 
-@media (hover: hover) {
-  .colored:hover,
-  .colored:focus {
-    transform: scale(1.05);
-    background-image: linear-gradient(
-      to right,
-      #7000ff 0%,
-      #9e40ba 31%,
-      #ffc727 100%
-    );
-    background-size: 200%;
-    background-position: right center;
+.deleteButton:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+@media screen and (min-width: 769px) {
+  .transactionItem {
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    max-width: 710px;
+    margin: 0 auto;
+
+    padding: 15px 20px;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .colored:active {
-    transform: scale(1.08);
-    font-size: 19px;
+  .transactionItem:last-child {
+    border-bottom: none;
   }
 
-  .btn_edit:hover,
-  .btn_edit:focus {
-    & .edit {
-      stroke: #ffc727;
-    }
-  }
   .mobileOnly {
     display: none;
   }
   .desktopOnly {
-    display: block;
-  }
-}
-
-/* MOBILE */
-@media only screen and (max-width: 767.98px) {
-  .card {
-    width: 280px;
-    min-height: 293px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    position: relative;
-
-    &::before {
-      display: block;
-      content: "";
-      width: 5px;
-      height: 100%;
-      background-color: currentColor;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-  .row {
-    justify-content: space-between;
-  }
-
-  .row_item:nth-child(2n) {
-    text-align: end;
-  }
-  .mobileOnly {
-    display: block;
-  }
-  .desktopOnly {
-    display: none;
-  }
-}
-/* TABLET */
-@media only screen and (min-width: 768px) {
-  .row {
     display: flex;
     align-items: center;
-    padding: 16px 20px;
-    gap: 8px;
-
-    position: relative;
+    width: 100%;
   }
 
-  .row_item {
-    text-wrap: wrap;
-    color: var(--text-color);
+  .transactionDate {
+    width: 125px;
+    font-size: 14px;
+    color: var(--white-color);
   }
 
-  .row_item:first-child {
-    max-width: 105px;
-    min-width: 105px;
-    margin-left: 0;
-    flex-grow: 3;
-  }
-  .row_item:nth-child(2) {
-    max-width: 56px;
-    min-width: 56px;
-    text-align: center;
-  }
-  .row_item:nth-child(3) {
-    max-width: 130px;
-    min-width: 130px;
-    flex-grow: 2;
-  }
-  .row_item:nth-child(4) {
-    max-width: 150px;
-    min-width: 150px;
-    flex-grow: 2;
-  }
-  .row_item:nth-child(5) {
-    width: 88px;
-    text-align: center;
+  .transactionType {
+    width: 76px;
     font-weight: 600;
-    color: currentColor;
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 
-  .controls {
+  .income .transactionType {
+    color: var(--yellow-color);
+  }
+  .expense .transactionType {
+    color: var(--red-color);
+  }
+
+  .transactionCategory {
+    width: 150px;
+    text-transform: capitalize;
+    color: var(--white-color);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    padding-left: 45px;
+  }
+
+  .transactionComment {
+    width: 170px;
+    color: var(--white-color);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    padding-left: 40px;
+  }
+
+  .transactionAmount {
+    width: 108px;
+    display: flex;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: right;
+
+    justify-content: start;
+    padding-left: 20px;
+  }
+
+  .income .transactionAmount {
+    color: var(--yellow-color);
+  }
+  .expense .transactionAmount {
+    color: var(--red-color);
+  }
+
+  .transactionActions {
     display: flex;
     gap: 8px;
+    justify-content: flex-end;
     align-items: center;
   }
 }
-/* DESKTOP */
-@media only screen and (min-width: 1280px) {
+
+@media screen and (min-width: 1280px) {
+  .transactionItem {
+    max-width: 715px;
+  }
+
+  .transactionCategory {
+    padding-left: 25px;
+  }
+
+  .transactionComment {
+    padding-left: 40px;
+  }
+
+  .transactionAmount {
+    padding-right: 10px;
+    padding-left: 0;
+    justify-content: flex-end;
+  }
+
+  .transactionActions {
+    flex-grow: 1;
+  }
 }

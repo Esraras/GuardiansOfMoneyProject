@@ -1,18 +1,18 @@
-import styles from "./EditTransactionForm.module.css";
 import { useEffect, useState } from "react";
-import clsx from "clsx";
+import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { editTransactions } from "../../redux/transactions/operations";
+import { selectCategories } from "../../redux/Statistics/selectors";
 import { selectTransactions } from "../../redux/transactions/selectors";
-import { selectIsEditID, closeEditModal } from "../../redux/Modals/slice";
-// import { selectCategories } from "../../redux/Statistics/selectors";
+import { editTransactions } from "../../redux/transactions/operations";
+import { closeEditModal, selectIsEditID } from "../../redux/Modals/slice";
+import styles from "./EditTransactionForm.module.css";
+import clsx from "clsx";
+import { toast } from "react-toastify";
 
 function EditTransactionForm() {
   const categories = useSelector(selectCategories);
@@ -22,8 +22,15 @@ function EditTransactionForm() {
   const dispatch = useDispatch();
 
   const IdForEdit = useSelector(selectIsEditID);
-
   const foundObject = transactions.find((item) => item.id === IdForEdit);
+
+  const category = categories.find((cat) => cat.id === foundObject.categoryId);
+  const categoryName =
+    foundObject.type === "INCOME"
+      ? "Income"
+      : category
+      ? category.name
+      : "Unknown";
 
   useEffect(() => {
     if (foundObject.type === "INCOME") {
@@ -37,31 +44,9 @@ function EditTransactionForm() {
   const startDateDefaultValue = new Date(foundObject.transactionDate);
   const commentDefaultValue = foundObject.comment;
 
-  const categoriesForSelect = categories.map((category) => ({
-    value: category.id,
-    label: category.name,
-  }));
-
-  const selectDefaultValue = categoriesForSelect.find(
-    (item) => item.value === foundObject.categoryId
-  );
-
-  const [selectedOption] = useState(null);
-
-  const currentDate = new Date();
-  const formattedDate = format(
-    currentDate,
-    "EEE MMM dd yyyy HH:mm:ss 'GMT'XXX (zzz)"
-  );
-
   const schema = yup.object().shape({
-    amount: yup.number().required("number invalid value"),
-    transactionDate: yup
-      .date()
-      .required("Date is required")
-      .default(() => new Date(formattedDate)),
-    switch: yup.boolean(),
-    category: yup.string(),
+    amount: yup.number().required("Number invalid value"),
+    transactionDate: yup.date().required("Date is required"),
     comment: yup.string().required("Comment is required"),
   });
 
@@ -72,79 +57,86 @@ function EditTransactionForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      amount: amountDefaultValue,
+      transactionDate: startDateDefaultValue,
+      comment: commentDefaultValue,
+    },
   });
 
   const onSubmit = (data) => {
-    if (!isChecked) {
-      const categoryId = categories.filter((el) => el.name === "Income");
-      data.categoryId = categoryId[0].id;
-      data.type = "INCOME";
-    } else if (selectedOption) {
-      data.categoryId = selectedOption.value;
-      data.type = "EXPENSE";
-      data.amount = Math.abs(data.amount);
+    const editedTransaction = {
+      categoryId: foundObject.categoryId,
+      type: foundObject.type,
+      amount:
+        foundObject.type === "INCOME"
+          ? Math.abs(data.amount)
+          : Math.abs(data.amount) * -1,
+      transactionDate: format(new Date(data.transactionDate), "yyyy-MM-dd"),
+      comment: data.comment,
+    };
+
+    try {
+      dispatch(
+        editTransactions({
+          id: IdForEdit,
+          transaction: editedTransaction,
+        })
+      )
+        .unwrap()
+        .then(() => {
+          toast.success("Transaction updated successfully");
+          dispatch(closeEditModal());
+        })
+        .catch((error) => {
+          toast.error(error || "Failed to update transaction");
+        });
+    } catch (error) {
+      toast.error("An error occurred while updating the transaction");
     }
-
-    data.type = foundObject.type;
-    const originalDate = new Date(data.transactionDate);
-    const formattedDate = format(originalDate, "yyyy-MM-dd");
-    data.transactionDate = formattedDate;
-
-    if (foundObject.type === "INCOME") {
-      data.categoryId = foundObject.categoryId;
-      data.amount = Math.abs(data.amount);
-    } else {
-      if (selectedOption) {
-        data.categoryId = selectedOption.value;
-      } else {
-        data.categoryId = foundObject.categoryId;
-      }
-      data.amount = Math.abs(data.amount) * -1;
-    }
-    delete data.switch;
-
-    dispatch(editTransactions({ id: IdForEdit, transaction: data }));
-    dispatch(closeEditModal());
   };
 
   return (
     <>
-      <div className={styles.type}>
-        <div
-          className={`${styles.type_income} ${styles.type_text} ${
-            !isChecked ? styles.income_active : ""
-          }`}
-        >
-          Income
-        </div>
-        <div className={styles.type_svg}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="10"
-            height="22"
-            viewBox="0 0 10 22"
-            fill="none"
-          >
-            <path
-              d="M8.80108 1.09786L1.19895 20.9021"
-              stroke="#E0E0E0"
-              strokeWidth="2"
-            />
-          </svg>
-        </div>
-        <div
-          className={`${styles.type_expense} ${styles.type_text} ${
-            isChecked ? styles.expense_active : ""
-          }`}
-        >
-          Expense
-        </div>
-      </div>
-
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.type}>
+          <div
+            className={clsx(
+              styles.type_text,
+              !isChecked && styles.income_active
+            )}
+          >
+            Income
+          </div>
+          <div className={styles.type_svg}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="22"
+              viewBox="0 0 10 22"
+              fill="none"
+            >
+              <path
+                d="M8.80108 1.09786L1.19895 20.9021"
+                stroke="#E0E0E0"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+          <div
+            className={clsx(
+              styles.type_text,
+              isChecked && styles.expense_active
+            )}
+          >
+            Expense
+          </div>
+        </div>
+
         {isChecked && (
-          <div className={styles.comment}>{selectDefaultValue.label}</div>
+          <div className={styles.category_display}>{categoryName}</div>
         )}
+
         <div className={styles.sum_data_wrap}>
           <div className={styles.sum_wrap}>
             <input
@@ -152,11 +144,10 @@ function EditTransactionForm() {
               type="number"
               autoComplete="off"
               placeholder="0.00"
-              defaultValue={amountDefaultValue}
               className={styles.sum}
             />
             {errors.amount && (
-              <span className={styles.comment_err}>{"Enter a number"}</span>
+              <span className={styles.comment_err}>Enter a number</span>
             )}
           </div>
           <div
@@ -165,24 +156,57 @@ function EditTransactionForm() {
           >
             <Controller
               name="transactionDate"
-              className={styles.date}
               control={control}
+              defaultValue={startDateDefaultValue}
               render={({ field }) => (
-                <>
-                  <DatePicker
-                    selected={field.value || startDateDefaultValue}
-                    onChange={(date) => {
-                      field.onChange(date);
-                      setIsDatePickerOpen(false);
-                    }}
-                    dateFormat="dd.MM.yyyy"
-                    open={isDatePickerOpen}
-                    onClickOutside={() => setIsDatePickerOpen(false)}
-                    className={styles.customDatePicker}
-                    calendarClassName={styles.calendarClassName}
-                    maxDate={formattedDate}
-                  />
-                </>
+                <DatePicker
+                  selected={field.value}
+                  onChange={(date) => {
+                    field.onChange(date);
+                    setIsDatePickerOpen(false);
+                  }}
+                  dateFormat="dd.MM.yyyy"
+                  open={isDatePickerOpen}
+                  onClickOutside={() => setIsDatePickerOpen(false)}
+                  className={styles.customDatePicker}
+                  calendarClassName={styles.calendarClassName}
+                  showPopperArrow={false}
+                  popperClassName={styles.calendarPopper}
+                  locale="en-US"
+                  maxDate={new Date()}
+                  renderCustomHeader={({
+                    date,
+                    decreaseMonth,
+                    increaseMonth,
+                    prevMonthButtonDisabled,
+                    nextMonthButtonDisabled,
+                  }) => (
+                    <div className={styles.customHeader}>
+                      <button
+                        type="button"
+                        onClick={decreaseMonth}
+                        disabled={prevMonthButtonDisabled}
+                        className={styles.navButton}
+                      >
+                        {"<"}
+                      </button>
+                      <div className={styles.currentMonth}>
+                        {date.toLocaleString("en-US", {
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={increaseMonth}
+                        disabled={nextMonthButtonDisabled}
+                        className={styles.navButton}
+                      >
+                        {">"}
+                      </button>
+                    </div>
+                  )}
+                />
               )}
             />
             <div className={styles.svg_wrap}>
@@ -214,25 +238,29 @@ function EditTransactionForm() {
             type="text"
             className={styles.input}
             placeholder="Comment"
-            defaultValue={commentDefaultValue}
             autoComplete="off"
           />
           {errors.comment && (
-            <span className={styles.comment_err}>{"Enter a comment"}</span>
+            <span className={styles.comment_err}>Enter a comment</span>
           )}
         </div>
         <div className={styles.btn_wrap}>
-          <button className={clsx(styles.btn, styles.btn_add)} type="submit">
-            Save
+          <button
+            className={clsx(styles.btn, styles.btn_add)}
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit(onSubmit)(e);
+            }}
+          >
+            SAVE
           </button>
           <button
             className={clsx(styles.btn, styles.btn_cancel)}
             type="button"
-            onClick={() => {
-              dispatch(closeEditModal());
-            }}
+            onClick={() => dispatch(closeEditModal())}
           >
-            Cancel
+            CANCEL
           </button>
         </div>
       </form>

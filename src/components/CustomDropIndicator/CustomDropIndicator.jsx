@@ -1,3 +1,4 @@
+import React from "react";
 import style from "./CustomDropIndicator.module.css";
 
 function CustomDropIndicator({ up }) {

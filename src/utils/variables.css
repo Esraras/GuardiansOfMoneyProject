@@ -22,4 +22,25 @@
     rgba(106, 70, 165, 0.7) 61.04%,
     rgba(133, 93, 175, 0.7) 100%
   );
+
+  
+  /* COLOR PALETTE */
+  --yellow: #ffb627;
+  --yellow-color: #ffb627;
+  --red-color: #ff6596;
+  --icon-violet: #734aef;
+  --white: #fbfbfb;
+  --white-color: #fbfbfb;
+  --white-400: rgba(255, 255, 255, 0.4);
+  --white-600: rgba(255, 255, 255, 0.6);
+  --text-button: #623f8b;
+  --text-color: #fbfbfb;
+  --dashboard-text: #ff868d;
+  --form-color: rgba(255, 255, 255, 0.1);
+  /* FONT */
+  --font-family: 'Poppins', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
 }

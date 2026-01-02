@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userTransactionsApi, setToken } from "../../api/userTransactionApi";
-import { getBalanceThunk } from "../Auth/operations";
+import { getBalanceThunk } from "../auth/operations";
 
 // Tüm işlemleri getirmek için thunk
 export const getTransactions = createAsyncThunk(

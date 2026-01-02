@@ -1,5 +1,5 @@
 import styles from "./LoadingScreenSharedLayoutPages.module.css";
-import loadingScreenImg from "../../../images/loading_screen/loadingScreenImg.png";
+import loadingScreenImg from "../../../images/LoadingScreen/loadingScreenImg.png";
 import "animate.css/animate.min.css";
 const LoadingScreenSharedLayoutPages = () => {
   return (

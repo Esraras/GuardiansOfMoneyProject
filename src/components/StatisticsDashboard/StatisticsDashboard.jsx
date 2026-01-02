@@ -5,7 +5,7 @@ import {
   Months_OPTIONS,
   YEARS_OPTIONS,
 } from "../../constants/TransactionConstants";
-import { fetchTransactionsSummary } from "../../redux/Statistics/operations";
+import { getTransactions } from "../../redux/transactions/operations";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const StatisticsDashboard = () => {
   const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    dispatch(fetchTransactionsSummary({ month, year }));
+    dispatch(getTransactions({ month, year }));
   }, [month, year, dispatch]);
 
   return (

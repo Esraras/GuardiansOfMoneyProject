@@ -6,26 +6,24 @@ import "chart.js/auto";
 import { useSelector } from "react-redux";
 import styles from "./StatisticsChart.module.css";
 import {
-  selectFilteredCategories,
-  selectIsLoading,
-  selectTransactionsSummary,
-} from "../../redux/Statistics/selectors";
+  selectTransactions,
+  selectTransLoading,
+  selectTransError,
+} from "../../redux/transactions/selectors";
 import { getTrasactionCategoryColor } from "../../constants/TransactionConstants";
 import LoadingSpinner from "../common/LoadingSpinner/Loader";
 
 const StatisticsChart = () => {
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectTransLoading);
 
-  const balanceForSpecificPeriod = useSelector(
-    selectTransactionsSummary
-  )?.periodTotal;
+  const balanceForSpecificPeriod = useSelector(selectTransactions)?.periodTotal;
 
   function formatNumber(balanceAmount) {
     if (balanceAmount === undefined || balanceAmount === null) return "0.00";
     return balanceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
 
-  const filteredCategories = useSelector(selectFilteredCategories);
+  const filteredCategories = useSelector(selectTransError) || [];
 
   const chartLabels =
     filteredCategories?.length > 0
@@ -87,7 +85,7 @@ const StatisticsChart = () => {
             <Doughnut data={chartData} options={chartOptions} />
           </div>
           <div className={`${styles.balance} ${textAnimatioClasses}`}>
-            ${"     "}
+            ₺{"     "}
             {balanceForSpecificPeriod
               ? formatNumber(balanceForSpecificPeriod.toFixed(2))
               : "0.00"}

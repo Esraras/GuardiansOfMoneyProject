@@ -1,26 +1,26 @@
 import styles from "./StatisticsTable.module.css";
 import { useSelector } from "react-redux";
 import {
-  selectTransactionsSummary,
-  selectFilteredCategories,
-} from "../../redux/Statistics/selectors";
+  selectTransactions,
+  selectTransLoading,
+} from "../../redux/transactions/selectors";
 import { getTrasactionCategoryColor } from "../../constants/TransactionConstants";
-import { selectIsLoading } from "../../redux/Statistics/selectors";
+
 import LoadingSpinner from "../common/LoadingSpinner/Loader";
 
 const StatisticsTable = () => {
-  const transactionsSummary = useSelector(selectTransactionsSummary) || {
+  const transactionsSummary = useSelector(selectTransactions) || {
     expenseSummary: 0,
     incomeSummary: 0,
   };
-  const filteredCategories = useSelector(selectFilteredCategories) || [];
+  const TransLoading = useSelector(selectTransLoading) || [];
 
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectTransLoading);
 
   const renderCategorySummary = () => {
     return (
       <div className={styles.categorySummary}>
-        {filteredCategories.map((item) => (
+        {TransLoading.map((item) => (
           <div key={item.name} className={styles.categoryRow}>
             <div className={styles.category}>
               <div
@@ -62,7 +62,7 @@ const StatisticsTable = () => {
 
       {isLoading ? (
         <LoadingSpinner />
-      ) : filteredCategories?.length > 0 ? (
+      ) : TransLoading?.length > 0 ? (
         renderCategorySummary()
       ) : (
         renderMisingDataMessage()

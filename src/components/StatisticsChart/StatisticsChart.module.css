@@ -5,13 +5,13 @@
   color: rgba(251, 251, 251, 1);
   position: relative;
   width: 100%;
-  height: auto;
+  height: 200px;
   margin: 0 auto;
 }
 
 .chartContainer .balance {
   position: absolute;
-  font-size: 19px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 27px;
 }

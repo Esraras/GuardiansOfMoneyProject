@@ -1,3 +1,4 @@
+/*
 import styles from "./StatisticsPage.module.css";
 import { useEffect, useState } from "react";
 
@@ -34,3 +35,4 @@ const StatisticsPage = () => {
 };
 
 export default StatisticsPage;
+*/

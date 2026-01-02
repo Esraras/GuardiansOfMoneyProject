@@ -16,14 +16,13 @@ const COLORS = {
   USDTRY: "#10B981", // emerald
   EURTRY: "#3B82F6", // blue
 };
-/*
+
 const formatTime = (ts) => {
   const d = new Date(ts);
   const h = d.getHours().toString().padStart(2, "0");
   const m = d.getMinutes().toString().padStart(2, "0");
   return `${h}:${m}`;
 };
-*/
 
 const numberFmt = (n) => {
   if (!Number.isFinite(n)) return "-";
@@ -125,6 +124,7 @@ const CurrencyAreaChart = () => {
               axisLine={false}
               tickLine={false}
               interval={5}
+              tickFormatter={formatTime}
             />
             <YAxis
               tick={{ fontSize: 10, fill: "#6B7280" }}

@@ -1,0 +1,73 @@
+.statisticsPage {
+  padding-right: 150px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  height: 100vh;
+  margin-left: 160px;
+}
+
+.statisticsPage .titleAndChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 40px;
+  margin-left: 0px;
+}
+
+.titleAndChart .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 45px;
+  color: rgba(251, 251, 251, 1);
+}
+
+.statisticsPage .dashboardAndTable {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 100%;
+  margin-top: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .statisticsPage {
+    flex-direction: row;
+    margin-top: 50px;
+    margin-left: 10px;
+  }
+
+  .statisticsPage .titleAndChart {
+    gap: 20px;
+    align-self: flex-start;
+  }
+
+  .statisticsPage .dashboardAndTable {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 70px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .statisticsPage {
+    display: inline-flex;
+    /* margin-top: 32px; */
+    margin-left: 70px;
+    margin-top: 0;
+  }
+
+  .statisticsPage .dashboardAndTable {
+    margin-top: 65px;
+  }
+}

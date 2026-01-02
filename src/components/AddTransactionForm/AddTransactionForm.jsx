@@ -12,7 +12,7 @@ import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { addTransactions } from "../../redux/transactions/operations";
 import { closeAddModal } from "../../redux/Modals/slice";
-// import { selectCategories } from "../../redux/Statistics/selectors";
+import { selectCategories } from "../../redux/Statistics/selectors";
 import CustomDropIndicator from "../CustomDropIndicator/CustomDropIndicator";
 
 function AddTransactionForm() {

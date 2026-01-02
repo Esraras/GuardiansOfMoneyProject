@@ -91,7 +91,7 @@ function EditTransactionForm() {
         .catch((error) => {
           toast.error(error || "Failed to update transaction");
         });
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while updating the transaction");
     }
   };

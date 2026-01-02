@@ -1,61 +1,80 @@
 .transactionItem {
   display: flex;
-  flex-direction: column;
-  padding: 12px 15px;
-  margin: 0 auto 8px;
-  width: 280px;
-
-  background-color: rgba(82, 59, 126, 0.6);
-  border-radius: 8px;
-  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
-
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--white-color);
   font-size: 14px;
+  width: 100%;
+  max-width: 715px;
+  margin: 0 auto;
 }
 
 .transactionItem:last-child {
-  margin-bottom: 0;
+  border-bottom: none;
 }
 
-.income .accent {
+.transactionDate {
+  width: 125px;
+  font-size: 14px;
+  color: var(--white-color);
+}
+
+.transactionType {
+  width: 76px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.income .transactionType {
   color: var(--yellow-color);
 }
-.expense .accent {
+
+.expense .transactionType {
   color: var(--red-color);
 }
 
-.mobileOnly {
-  display: block;
-}
-
-.mobileRow {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  width: 100%;
-}
-
-.mobileLabel {
-  font-weight: 600;
+.transactionCategory {
+  width: 150px;
   text-transform: capitalize;
   color: var(--white-color);
-  opacity: 0.6;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.mobileValue {
+.transactionComment {
+  width: 170px;
+  color: var(--white-color);
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.transactionAmount {
+  width: 108px;
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 14px;
   text-align: right;
 }
 
-.mobileActions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 12px;
+.income .transactionAmount {
+  color: var(--yellow-color);
 }
 
-.desktopOnly {
-  display: none;
+.expense .transactionAmount {
+  color: var(--red-color);
+}
+
+.transactionActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .editButton {
@@ -95,125 +114,75 @@
   transform: scale(1.05);
 }
 
-@media screen and (min-width: 769px) {
-  .transactionItem {
-    flex-direction: row;
-    align-items: center;
+/* Mobile view styles */
+.mobileRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  width: 100%;
+}
 
+.mobileLabel {
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--white-color);
+  opacity: 0.6;
+}
+
+.mobileValue {
+  text-align: right;
+}
+
+.mobileActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .transactionItem {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background-color: rgba(82, 59, 126, 0.6);
+    border-radius: 8px;
+    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(50px);
+    width: 280px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+  .transactionItem {
     width: 100%;
     max-width: 710px;
-    margin: 0 auto;
-
-    padding: 15px 20px;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-
-  .transactionItem:last-child {
-    border-bottom: none;
-  }
-
-  .mobileOnly {
-    display: none;
-  }
-  .desktopOnly {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-
-  .transactionDate {
-    width: 125px;
-    font-size: 14px;
-    color: var(--white-color);
-  }
-
-  .transactionType {
-    width: 76px;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .income .transactionType {
-    color: var(--yellow-color);
-  }
-  .expense .transactionType {
-    color: var(--red-color);
-  }
-
   .transactionCategory {
-    width: 150px;
-    text-transform: capitalize;
-    color: var(--white-color);
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-
     padding-left: 45px;
   }
-
   .transactionComment {
-    width: 170px;
-    color: var(--white-color);
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-
     padding-left: 40px;
   }
-
   .transactionAmount {
-    width: 108px;
-    display: flex;
-    font-weight: 600;
-    font-size: 14px;
-    text-align: right;
-
     justify-content: start;
     padding-left: 20px;
-  }
-
-  .income .transactionAmount {
-    color: var(--yellow-color);
-  }
-  .expense .transactionAmount {
-    color: var(--red-color);
-  }
-
-  .transactionActions {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    align-items: center;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .transactionItem {
-    max-width: 715px;
-  }
-
   .transactionCategory {
     padding-left: 25px;
   }
 
+  .transactionActions {
+    flex-grow: 1;
+  }
   .transactionComment {
     padding-left: 40px;
   }
-
   .transactionAmount {
     padding-right: 10px;
-    padding-left: 0;
-    justify-content: flex-end;
-  }
-
-  .transactionActions {
-    flex-grow: 1;
   }
 }

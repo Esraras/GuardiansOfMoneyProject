@@ -4,7 +4,7 @@
   align-items: center;
 
   width: 100%;
-  margin-top: 40px;
+  margin-top: 230px;
 }
 
 .loadingScreenSharedLayoutPages img {
@@ -16,12 +16,14 @@
   .loadingScreenSharedLayoutPages img {
     width: 200px;
     height: 200px;
+    margin-left: 260px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .loadingScreenSharedLayoutPages {
-    margin-top: 0;
+    margin-top: 100px;
+    margin-left: 190px;
   }
 
   .loadingScreenSharedLayoutPages img {

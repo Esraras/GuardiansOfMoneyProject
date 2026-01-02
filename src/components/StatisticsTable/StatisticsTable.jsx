@@ -1,11 +1,11 @@
 import styles from "./StatisticsTable.module.css";
 import { useSelector } from "react-redux";
+
 import {
   selectTransactions,
   selectTransLoading,
 } from "../../redux/transactions/selectors";
 import { getTrasactionCategoryColor } from "../../constants/TransactionConstants";
-
 import LoadingSpinner from "../common/LoadingSpinner/Loader";
 
 const StatisticsTable = () => {
@@ -13,14 +13,17 @@ const StatisticsTable = () => {
     expenseSummary: 0,
     incomeSummary: 0,
   };
-  const TransLoading = useSelector(selectTransLoading) || [];
+
+  const transactions = useSelector(selectTransactions);
 
   const isLoading = useSelector(selectTransLoading);
+
+  
 
   const renderCategorySummary = () => {
     return (
       <div className={styles.categorySummary}>
-        {TransLoading.map((item) => (
+        {transactionsSummary?.map((item) => (
           <div key={item.name} className={styles.categoryRow}>
             <div className={styles.category}>
               <div
@@ -62,7 +65,7 @@ const StatisticsTable = () => {
 
       {isLoading ? (
         <LoadingSpinner />
-      ) : TransLoading?.length > 0 ? (
+      ) : transactions?.length > 0 ? (
         renderCategorySummary()
       ) : (
         renderMisingDataMessage()

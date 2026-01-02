@@ -1,12 +1,12 @@
+import React from "react";
 import Modal from "react-modal";
-import styles from "./ModalEditTransaction.module.css";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import { useDispatch, useSelector } from "react-redux";
-// import { getTransactionsCategories } from '../../redux/Statistics/operations';
 import {
   closeEditModal,
   selectIsEditModalOpen,
 } from "../../redux/Modals/slice";
+import styles from "./ModalEditTransaction.module.css";
 
 Modal.setAppElement("#root");
 

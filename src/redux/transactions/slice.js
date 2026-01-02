@@ -21,20 +21,22 @@ const slice = createSlice({
         state.transactions = payload;
       })
       .addCase(addTransactions.fulfilled, (state, { payload }) => {
-        state = state.transactions.push(payload);
+        state.transactions = [...state.transactions, payload];
       })
       .addCase(editTransactions.fulfilled, (state, { payload }) => {
-        const transactionIndex = state.transactions.findIndex((transaction) => {
-          return transaction.id === payload.id;
-        });
-        if (transactionIndex !== -1) {
-          state.transactions[transactionIndex] = payload;
+        const index = state.transactions.findIndex(
+          (transaction) => transaction.id === payload.id
+        );
+        if (index !== -1) {
+          state.transactions[index] = payload;
         }
+        state.isTransLoading = false;
+        state.isTransError = null;
       })
       .addCase(deleteTransactions.fulfilled, (state, { payload }) => {
-        state.transactions = state.transactions.filter((transaction) => {
-          return transaction.id !== payload;
-        });
+        state.transactions = state.transactions.filter(
+          (transaction) => transaction.id !== payload
+        );
       })
       .addMatcher(
         isAnyOf(

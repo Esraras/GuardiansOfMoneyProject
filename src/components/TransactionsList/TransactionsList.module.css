@@ -1,110 +1,234 @@
-.list {
+.tableContainer {
+  width: 100%;
+  border-radius: 8px;
+  padding: 40px 0 0 0;
   display: flex;
   flex-direction: column;
+}
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: rgba(82, 59, 126, 0.6);
+  border-radius: 8px;
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  width: 100%;
+  max-width: 715px;
+  margin: 0 auto;
+}
+
+.headerCell {
+  color: var(--white-color);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  transition: color 0.2s;
+  text-wrap: wrap;
+}
+
+.headerCell:hover {
+  color: #ffc727;
+}
+
+.headerCell:nth-child(1) {
+  width: 125px;
+  margin-left: 0;
+}
+
+.headerCell:nth-child(2) {
+  width: 76px;
+  text-align: center;
+}
+
+.headerCell:nth-child(3) {
+  width: 150px;
+}
+
+.headerCell:nth-child(4) {
+  width: 170px;
+}
+
+.headerCell:nth-child(5) {
+  width: 108px;
+  text-align: right;
+}
+
+.headerCell:last-child {
+  cursor: default;
+  flex-grow: 1;
+}
+
+.sortIcon {
+  margin-left: 5px;
   font-size: 14px;
 }
 
-.container {
+.transactionList {
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
   width: 100%;
-  min-height: 100px;
-  margin: auto;
+  max-width: 715px;
+  max-height: calc(100vh - 292px);
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.loadingContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  min-height: 200px;
 }
 
-.text {
+.emptyTransactionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
   text-align: center;
-  margin: 24px auto;
+  color: var(--white-color);
+  background: rgba(74, 86, 226, 0.1);
+  border-radius: 8px;
+  padding: 40px;
+  margin-top: 46px;
+  width: 100%;
+  max-width: 715px;
+  margin: 0 auto;
 }
 
-/* MOBILE ONLY */
-@media only screen and (max-width: 767.98px) {
-  .list {
+.noTransactions {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.addFirstTransaction {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.addTransactionButton {
+  background: linear-gradient(
+    97deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
+  border: none;
+  border-radius: 20px;
+  color: var(--white-color);
+  font-size: 18px;
+  padding: 13px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addTransactionButton:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    97deg,
+    #7000ff -16.42%,
+    #9e40ba 97.04%,
+    #ffc727 150.71%
+  );
+}
+
+@media screen and (max-width: 768px) {
+  .tableContainer {
     margin-top: 32px;
-    align-items: center;
-    gap: 8px;
+    padding: 0;
+    border-radius: 0;
   }
-  .container {
-    margin-top: 40px;
-  }
-  .head_row {
+
+  .tableHeader {
     display: none;
   }
-}
-/* TABLET */
-@media only screen and (min-width: 768px) {
-  .list {
-    width: 704px;
-    max-height: calc(100vh - 500px);
-    margin: auto;
 
-    overflow: auto;
-    scrollbar-width: thin;
-  }
-  .container {
-    width: 704px;
-    height: calc(100vh - 500px);
-  }
-
-  .head_row {
-    width: 704px;
-    margin: auto;
-    padding: 16px 20px;
-
-    display: flex;
+  .transactionList {
     align-items: center;
     gap: 8px;
-
-    text-transform: capitalize;
-
-    border-radius: 8px;
-    background: rgba(82, 59, 126, 0.6);
-    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(50px);
-    font-weight: 600;
-    font-size: 14px;
-
-    &::after {
-      display: none;
-    }
+    margin-top: 32px;
   }
 
-  .row_item {
-    text-wrap: wrap;
-    color: var(--text-color);
-    flex-grow: 0;
-  }
-
-  .row_item:first-child {
-    width: 105px;
-    margin-left: 0;
-  }
-  .row_item:nth-child(2) {
-    width: 56px;
-    text-align: center;
-  }
-  .row_item:nth-child(3) {
-    width: 130px;
-  }
-  .row_item:nth-child(4) {
-    width: 150px;
-  }
-  .row_item:nth-child(5) {
-    width: 88px;
-    text-align: center;
+  .emptyTransactionsContainer {
+    margin-top: 40px;
+    width: 280px;
   }
 }
-/* DESKTOP */
-@media only screen and (min-width: 1280px) {
-  .list,
-  .container {
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+  .tableContainer {
+    width: 100%;
+    padding-top: 0;
+    margin: 0 auto;
+  }
+
+  .tableHeader {
+    width: 100%;
+    max-width: 710px;
+    margin: 0 auto;
+  }
+
+  .headerCell:nth-child(3) {
+    width: 130px;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .headerCell:nth-child(4) {
+    width: 150px;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .headerCell:nth-child(5) {
+    width: 88px;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .transactionList {
+    width: 100%;
+    max-width: 710px;
+    max-height: calc(100vh - 460px);
+    margin: 0 auto;
+  }
+
+  .emptyTransactionsContainer {
+    width: 100%;
+    max-width: 710px;
+    height: calc(100vh - 460px);
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .tableContainer {
+    width: 100%;
+    padding-top: 40px;
+  }
+
+  .tableHeader {
+    width: 715px;
+  }
+
+  .transactionList {
     width: 715px;
     max-height: calc(100vh - 292px);
   }
-  .head_row {
+
+  .emptyTransactionsContainer {
     width: 715px;
+    max-height: calc(100vh - 292px);
   }
 }

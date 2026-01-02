@@ -1,112 +1,124 @@
-import clsx from "clsx";
+import React from "react";
+import styles from "./TransactionsItem.module.css";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-
 import { deleteTransactions } from "../../redux/transactions/operations";
 import { openEditModal, addEditId } from "../../redux/Modals/slice";
+import { format, parseISO } from "date-fns";
+import { toast } from "react-toastify";
 
-import styles from "./TransactionsItem.module.css";
-import { getBalanceThunk } from "../../redux/auth/operations";
-
-function getStyleByType(type) {
-  const currentColor =
-    type === "-" ? "var(--red-color)" : "var(--yellow-color)";
-  return { color: currentColor };
-}
-
-function TransactionItem({ transaction, id }) {
+const TransactionItem = ({ transaction }) => {
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { id, date, type, category, comment, sum } = transaction;
 
-  const style = getStyleByType(transaction.type);
+  const handleEditClick = () => {
+    dispatch(addEditId(id));
+    dispatch(openEditModal());
+  };
 
-  function onEdit() {
-    if (!isModalOpen) {
-      dispatch(addEditId(id));
-      dispatch(openEditModal());
-      setIsModalOpen(true);
+  const handleDeleteClick = () => {
+    dispatch(deleteTransactions(id))
+      .unwrap()
+      .then(() => toast.success("Transaction deleted successfully"))
+      .catch((error) => toast.error(error || "Failed to delete transaction"));
+  };
+
+  const formatDate = (dateString) => {
+    try {
+      const d = dateString ? parseISO(dateString) : new Date();
+      return format(d, "yyyy-MM-dd");
+    } catch {
+      return format(new Date(), "yyyy-MM-dd");
     }
-  }
+  };
 
-  async function OnDelete() {
-    await dispatch(deleteTransactions(id));
-    dispatch(getBalanceThunk());
-  }
+  const transactionType = type === "INCOME" ? "+" : "-";
+  const safeComment = comment || "-";
+
+  const mobileData = [
+    { label: "date", value: formatDate(date) },
+    { label: "type", value: transactionType, isAccent: true },
+    { label: "category", value: category },
+    { label: "comment", value: safeComment },
+    { label: "sum", value: sum, isAccent: true },
+  ];
 
   return (
-    <li className={styles.item} style={style}>
-      <ul className={clsx(styles.card, styles.mobileOnly)}>
-        {Object.keys(transaction).map((tKey) => (
-          <li key={tKey} className={styles.row}>
-            <span className={styles.row_item}>{tKey}</span>
-            <span className={styles.row_item}>{transaction[tKey]}</span>
-          </li>
+    <li
+      className={`${styles.transactionItem} ${
+        type === "EXPENSE" ? styles.expense : styles.income
+      }`}
+    >
+      <div className={styles.mobileOnly}>
+        {mobileData.map((item, index) => (
+          <div key={index} className={styles.mobileRow}>
+            <div className={styles.mobileLabel}>{item.label}</div>
+            <div
+              className={`${styles.mobileValue} ${
+                item.isAccent ? styles.accent : ""
+              }`}
+            >
+              {item.value}
+            </div>
+          </div>
         ))}
 
-        <li className={styles.row}>
-          <button
-            type="button"
-            className={clsx(styles.btn_edit, styles.row_item)}
-            onClick={onEdit}
-          >
+        <div className={styles.mobileActions}>
+          <button className={styles.editButton} onClick={handleEditClick}>
             <svg
-              id="icon-edit"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
             >
               <path
-                fill="none"
-                stroke="#fff"
-                d="M23.733 12.718l-5.744-5.744M1.477 29.231l4.86-0.54c0.594-0.066 0.891-0.099 1.168-0.189 0.246-0.080 0.48-0.192 0.696-0.335 0.243-0.161 0.455-0.372 0.877-0.794l18.963-18.963c1.586-1.586 1.586-4.158 0-5.744s-4.158-1.586-5.744 0l-18.963 18.963c-0.422 0.422-0.634 0.634-0.794 0.877-0.142 0.216-0.255 0.45-0.335 0.696-0.090 0.277-0.123 0.574-0.189 1.168l-0.54 4.86z"
-              ></path>
+                d="M1.81396 10.2667L1.15729 12.8667L3.75729 12.2L10.9773 4.98L9.02063 3.02L1.81396 10.2667Z"
+                stroke="white"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
-          <button
-            type="button"
-            className={clsx(styles.colored, "btn_delete")}
-            onClick={OnDelete}
-          >
+
+          <button className={styles.deleteButton} onClick={handleDeleteClick}>
             Delete
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
+      <div className={styles.desktopOnly}>
+        <div className={styles.transactionDate}>{formatDate(date)}</div>
+        <div className={styles.transactionType}>{transactionType}</div>
+        <div className={styles.transactionCategory}>{category}</div>
+        <div className={styles.transactionComment}>{safeComment}</div>
+        <div className={styles.transactionAmount}>{sum}</div>
 
-      <ul className={clsx(styles.row, styles.desktopOnly)}>
-        {Object.values(transaction).map((value, idx) => (
-          <li key={idx} className={styles.row_item}>
-            {value}
-          </li>
-        ))}
-
-        <li className={clsx(styles.row_item, styles.controls)}>
-          <button type="button" className={styles.btn_edit} onClick={onEdit}>
+        <div className={styles.transactionActions}>
+          <button className={styles.editButton} onClick={handleEditClick}>
             <svg
-              id="icon-edit"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
             >
               <path
-                fill="none"
-                stroke="#fff"
-                d="M23.733 12.718l-5.744-5.744M1.477 29.231l4.86-0.54c0.594-0.066 0.891-0.099 1.168-0.189 0.246-0.080 0.48-0.192 0.696-0.335 0.243-0.161 0.455-0.372 0.877-0.794l18.963-18.963c1.586-1.586 1.586-4.158 0-5.744s-4.158-1.586-5.744 0l-18.963 18.963c-0.422 0.422-0.634 0.634-0.794 0.877-0.142 0.216-0.255 0.45-0.335 0.696-0.090 0.277-0.123 0.574-0.189 1.168l-0.54 4.86z"
-              ></path>
+                d="M1.81396 10.2667L1.15729 12.8667L3.75729 12.2L10.9773 4.98L9.02063 3.02L1.81396 10.2667Z"
+                stroke="white"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
-          <button
-            type="button"
-            className={clsx(styles.colored, "btn_delete")}
-            onClick={OnDelete}
-          >
+
+          <button className={styles.deleteButton} onClick={handleDeleteClick}>
             Delete
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </li>
   );
-}
+};
 
 export default TransactionItem;

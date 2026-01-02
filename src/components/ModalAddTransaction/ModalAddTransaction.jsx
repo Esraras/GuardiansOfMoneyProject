@@ -1,27 +1,26 @@
 import Modal from "react-modal";
-import AddTransactionForm from "../AddTransactionForm/AddTransactionForm";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./ModalAddTransaction.module.css";
+import s from "./ModalAddTransaction.module.css";
 import { selectIsAddModalOpen, closeAddModal } from "../../redux/Modals/slice";
+import AddTransactionForm from "../AddTransactionForm/AddTransactionForm";
 
 Modal.setAppElement("#root");
 
 function ModalAddTransaction() {
   const dispatch = useDispatch();
-
   const isAddOpen = useSelector(selectIsAddModalOpen);
 
   return (
     <Modal
       isOpen={isAddOpen}
-      className={styles.modal}
-      overlayClassName={styles.modal_Wrap}
+      className={s.modal}
+      overlayClassName={s.modal_Wrap}
       onRequestClose={() => {
         dispatch(closeAddModal());
       }}
     >
       <div
-        className={styles.modal_close}
+        className={s.modal_close}
         onClick={() => {
           dispatch(closeAddModal());
         }}

@@ -9,16 +9,5 @@ export const setToken = (token) => {
 };
 
 export const removeToken = () => {
-  delete userTransactionsApi.defaults.headers.common.Authorization;
+  userTransactionsApi.defaults.headers.common.Authorization = ``;
 };
-
-userTransactionsApi.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response && error.response.status === 401) {
-      removeToken();
-      window.location.href = "/login";
-    }
-    return Promise.reject(error);
-  }
-);

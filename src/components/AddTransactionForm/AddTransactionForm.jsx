@@ -1,4 +1,4 @@
-import s from "./AddTransactionForm.module.css";
+import styles from "./AddTransactionForm.module.css";
 import { useState } from "react";
 import clsx from "clsx";
 import DatePicker from "react-datepicker";
@@ -179,32 +179,32 @@ function AddTransactionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-      <div className={s.switch__wrapper}>
-        <span className={clsx(s.span_text, !isChecked && s.income_active)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <div className={styles.switch__wrapper}>
+        <span className={clsx(styles.span_text, !isChecked && styles.income_active)}>
           Income
         </span>
-        <label htmlFor="switch" className={s.switch}>
+        <label htmlFor="switch" className={styles.switch}>
           <input
             {...register("switch")}
             type="checkbox"
             id="switch"
             checked={isChecked}
             onChange={handleChange}
-            className={s.switch__input}
+            className={styles.switch__input}
           />
-          <span className={s.switch__slider}></span>
+          <span className={styles.switch__slider}></span>
         </label>
-        <span className={clsx(s.span_text, isChecked && s.expense_active)}>
+        <span className={clsx(styles.span_text, isChecked && styles.expense_active)}>
           Expense
         </span>
       </div>
       {isChecked && (
-        <div className={s.comment}>
+        <div className={styles.comment}>
           <Select
             classNamePrefix="react-select"
             styles={customStyles}
-            className={s.select_form}
+            className={styles.select_form}
             defaultValue={selectDefaultValue}
             onChange={setSelectedOption}
             options={categoriesForSelect}
@@ -223,14 +223,14 @@ function AddTransactionForm() {
           />
         </div>
       )}
-      <div className={s.sum_data_wrap}>
-        <div className={s.sum_wrap}>
+      <div className={styles.sum_data_wrap}>
+        <div className={styles.sum_wrap}>
           <input
             {...register("amount")}
             type="number"
             autoComplete="off"
             placeholder="0.00"
-            className={s.sum}
+            className={styles.sum}
             autoFocus
             onKeyPress={(event) => {
               if (!/[0-9.]/.test(event.key)) {
@@ -239,10 +239,10 @@ function AddTransactionForm() {
             }}
           />
           {errors.amount && (
-            <span className={s.comment_err}>{"Enter a number"}</span>
+            <span className={styles.comment_err}>{"Enter a number"}</span>
           )}
         </div>
-        <div className={s.data_wrap} onClick={() => setIsDatePickerOpen(true)}>
+        <div className={styles.data_wrap} onClick={() => setIsDatePickerOpen(true)}>
           <Controller
             name="transactionDate"
             control={control}
@@ -254,11 +254,11 @@ function AddTransactionForm() {
                   dateFormat="dd.MM.yyyy"
                   open={isDatePickerOpen}
                   onClickOutside={() => setIsDatePickerOpen(false)}
-                  className={s.customDatePicker}
-                  calendarClassName={s.calendarClassName}
+                  className={styles.customDatePicker}
+                  calendarClassName={styles.calendarClassName}
                   maxDate={currentDate}
                   showPopperArrow={false}
-                  popperClassName={s.calendarPopper}
+                  popperClassName={styles.calendarPopper}
                   locale="en-US"
                   renderCustomHeader={({
                     date,
@@ -267,16 +267,16 @@ function AddTransactionForm() {
                     prevMonthButtonDisabled,
                     nextMonthButtonDisabled,
                   }) => (
-                    <div className={s.customHeader}>
+                    <div className={styles.customHeader}>
                       <button
                         type="button"
                         onClick={decreaseMonth}
                         disabled={prevMonthButtonDisabled}
-                        className={s.navButton}
+                        className={styles.navButton}
                       >
                         {"<"}
                       </button>
-                      <div className={s.currentMonth}>
+                      <div className={styles.currentMonth}>
                         {date.toLocaleString("en-US", {
                           month: "long",
                           year: "numeric",
@@ -286,7 +286,7 @@ function AddTransactionForm() {
                         type="button"
                         onClick={increaseMonth}
                         disabled={nextMonthButtonDisabled}
-                        className={s.navButton}
+                        className={styles.navButton}
                       >
                         {">"}
                       </button>
@@ -296,7 +296,7 @@ function AddTransactionForm() {
               </>
             )}
           />
-          <div className={s.svg_wrap}>
+          <div className={styles.svg_wrap}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -319,23 +319,23 @@ function AddTransactionForm() {
           </div>
         </div>
       </div>
-      <div className={clsx(s.comment_bottom)}>
+      <div className={clsx(styles.comment_bottom)}>
         <input
           {...register("comment")}
           type="text"
-          className={s.input}
+          className={styles.input}
           placeholder="Comment"
           autoComplete="off"
         />
         {errors.comment && (
-          <span className={s.comment_err}>{"Enter a comment"}</span>
+          <span className={styles.comment_err}>{"Enter a comment"}</span>
         )}
       </div>
-      <button className={clsx(s.btn, s.btn_add)} type="submit">
+      <button className={clsx(styles.btn, styles.btn_add)} type="submit">
         Add
       </button>
       <button
-        className={clsx(s.btn, s.btn_cancel)}
+        className={clsx(styles.btn, styles.btn_cancel)}
         type="button"
         onClick={() => {
           dispatch(closeAddModal());

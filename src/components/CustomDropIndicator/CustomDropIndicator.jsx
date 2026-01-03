@@ -1,12 +1,12 @@
 import React from "react";
-import style from "./CustomDropIndicator.module.css";
+import styles from "./CustomDropIndicator.module.css";
 
 function CustomDropIndicator({ up }) {
   return (
     <div>
       {up ? (
         <svg
-          className={style.icon}
+          className={styles.icon}
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="11"
@@ -17,7 +17,7 @@ function CustomDropIndicator({ up }) {
         </svg>
       ) : (
         <svg
-          className={style.icon}
+          className={styles.icon}
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="11"

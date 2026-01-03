@@ -5,23 +5,19 @@
   gap: 20px;
 }
 
-.sidebar {
-  display: none;
-}
-
-.navigation {
-  grid-area: navigation;
-}
-
 .balance {
-  grid-area: balance;
+  display: flex;
+  margin-top: 20px;
 }
 
 .currency {
   grid-area: currency;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
+  .balance{
+    display: none;
+  }
   .container {
     gap: 30px;
     max-width: 710px;
@@ -54,15 +50,5 @@
     margin: 0;
   }
 
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    width: 100%;
-    max-width: 480px;
-
-    border-right: 1px solid rgba(255, 255, 255, 0.6);
-    padding-right: 69px;
-  }
+ 
 }

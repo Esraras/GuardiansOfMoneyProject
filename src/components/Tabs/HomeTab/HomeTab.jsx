@@ -16,18 +16,8 @@ const HomeTab = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.sidebar}>
-        <div className={styles.navigation}>
-          <Navigation />
-        </div>
-
         <div className={styles.balance}>
           <Balance />
-        </div>
-
-        <div className={styles.currency}>
-          <CurrencyAreaChart />
-        </div>
       </div>
 
       <TransactionList />

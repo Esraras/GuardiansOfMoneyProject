@@ -53,4 +53,10 @@
 
         margin-left: 480px;
     }
+    .balance{
+        margin-top: 28px;
+    }
+    .currencyChart{
+        margin-top: 32px;
+    }
 }

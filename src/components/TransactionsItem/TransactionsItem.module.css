@@ -140,7 +140,7 @@
   margin-top: 12px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .transactionItem {
     display: flex;
     flex-direction: column;
@@ -154,10 +154,10 @@
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .transactionItem {
     width: 100%;
-    max-width: 710px;
+    max-width: 704px;
   }
   .transactionCategory {
     padding-left: 45px;

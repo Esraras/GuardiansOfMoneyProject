@@ -1,7 +1,7 @@
 .wrap {
-  position: absolute;
+  position: fixed;
   right: 20px;
-  bottom: -60px;
+  bottom: 20px;
   width: 44px;
   height: 44px;
   z-index: 100;
@@ -23,11 +23,13 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-.btn:hover,
-.btn:focus {
-  transform: scale(1.05);
-  opacity: 0.9;
-  transition: all 0.3s ease;
+@media (hover: hover) {
+  .btn:hover,
+  .btn:focus {
+    transform: scale(1.05);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+  }
 }
 
 .icon {
@@ -36,15 +38,10 @@
   color: #ffffff;
 }
 
-@media screen and (max-width: 767px) {
-  .wrap {
-    right: 20px;
-    bottom: 0px;
-  }
-}
-
 @media screen and (min-width: 768px) {
   .wrap {
+    right: 40px;
+    bottom: 40px;
     width: 50px;
     height: 50px;
   }

@@ -4,6 +4,7 @@
   padding: 40px 0 0 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .tableHeader {
@@ -20,7 +21,6 @@
   width: 100%;
   max-width: 715px;
   margin: 0 auto;
-
 }
 
 .headerCell {
@@ -144,7 +144,7 @@
   );
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .tableContainer {
     margin-top: 32px;
     padding: 0;
@@ -167,16 +167,20 @@
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .tableContainer {
     width: 100%;
-    padding-top: 0;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-top: 40px;
+    align-items: center;
   }
 
   .tableHeader {
     width: 100%;
-    max-width: 710px;
+    max-width: 704px;
     margin: 0 auto;
   }
 
@@ -200,15 +204,16 @@
 
   .transactionList {
     width: 100%;
-    max-width: 710px;
-    max-height: calc(100vh - 460px);
+    max-width: 704px;
     margin: 0 auto;
+    flex: 1;
+    overflow: auto;
   }
 
   .emptyTransactionsContainer {
     width: 100%;
-    max-width: 710px;
-    height: calc(100vh - 460px);
+    max-width: 704px;
+    height: auto;
     margin: 0 auto;
   }
 }
@@ -216,7 +221,8 @@
 @media screen and (min-width: 1280px) {
   .tableContainer {
     width: 100%;
-    padding-top: 40px;
+    padding-top: 46px;
+    padding-left: 69px;
   }
 
   .tableHeader {
@@ -231,5 +237,7 @@
   .emptyTransactionsContainer {
     width: 715px;
     max-height: calc(100vh - 292px);
+    margin-top: 46px;
+    margin-left: 69px;
   }
 }

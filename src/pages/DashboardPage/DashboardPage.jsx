@@ -10,6 +10,7 @@ import Balance from "../../components/Balance/Balance";
 import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction";
 import ModalEditTransaction from "../../components/ModalEditTransaction/ModalEditTransaction";
 
+
 const DashboardPage = () => {
     const [activeTab, setActiveTab] = useState("home");
 
@@ -45,6 +46,7 @@ const DashboardPage = () => {
                     </div>
                 </div>
 
+            <div className={css.divider}></div>
                 <div className={css.mainContent}>
                     {renderContent()}
                     <ButtonAddTransactions />
@@ -52,7 +54,6 @@ const DashboardPage = () => {
                 <ModalAddTransaction />
                 <ModalEditTransaction />
             </div>
-            <div className={css.divider}></div>
         </>
     );
 };

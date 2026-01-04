@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import TransactionList from "../../TransactionsList/TransactionsList";
 import Balance from "../../Balance/Balance";
 import { getTransactions } from "../../../redux/transactions/operations";
-import Navigation from "../../Navigation/Navigation";
 import styles from "./HomeTab.module.css";
 
 const HomeTab = () => {
@@ -15,8 +14,8 @@ const HomeTab = () => {
 
   return (
     <div className={styles.container}>
-        <div className={styles.balance}>
-          <Balance />
+      <div className={styles.balance}>
+        <Balance />
       </div>
 
       <TransactionList />

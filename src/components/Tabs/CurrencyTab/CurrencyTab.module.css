@@ -1,5 +1,5 @@
 .currencyTab {
-  width: 320px;
+  width: 365px;
   background: var(--bg-card);
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-primary);
@@ -8,6 +8,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .currencyTab::before {
@@ -85,6 +86,9 @@
     padding: 0 16px;
     margin-bottom: 10px;
   }
+  .currencyTab {
+    margin-top: 0;
+  }
 }
 
 /* DESKTOP*/
@@ -99,6 +103,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    margin-top: 0;
   }
 
   .currencyTab::before {

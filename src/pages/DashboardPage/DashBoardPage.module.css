@@ -7,11 +7,13 @@
 .sideBar {
     width: 100%;
     max-width: 480px;
+    display: flex;
+    justify-content: center;
 }
 .balance {
     display: none;
 }
-.currencyChart {
+.currencyTab {
     display: none;
 }
 
@@ -26,21 +28,23 @@
     }
 
     .sideBar {
-        display: flex;
         flex-direction: row;
         gap: 20px 0px;
+        justify-content: normal;
     }
 
     .balance {
         display: flex;
+        justify-content: center;
     }
 
-    .currencyChart {
+    .currencyTab {
         display: flex;
         flex-direction: column;
         gap: 16px;
         width: 100%;
         max-width: 420px;
+        margin-left: 20px;
     }
 }
 
@@ -66,7 +70,8 @@
         margin-top: 28px;
     }
 
-    .currencyChart {
+    .currencyTab {
         margin-top: 32px;
+        margin-left: 0;
     }
 }

@@ -1,67 +1,60 @@
-# 💰 Money Guard
+# 💰 MoneyGuard
 
 [![LiveDemo](https://img.shields.io/badge/Live%20Demo-Online-green?style=flat&logo=vercel)](https://guardians-of-money-project.vercel.app/login)\
 [![GitHub](https://img.shields.io/badge/Repo-GitHub-blue?style=flat&logo=github)](https://github.com/Esraras/GuardiansOfMoneyProject)
 
-**Money Guard**, GuardiansOfMoneyProject
+**Money Guard**, GuardiansOfMoney
 tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlayan kullanıcı dostu bir finans yönetim platformudur. Bütçenizi yönetin ve finansal durumunuzu tek bir yerden kontrol altında tutun. 📊
 
-![Money Guard Dashboard](./img/screenshots/dashboard.png)
+Canlı demo: [Projeyi Görüntüle](https://guardians-of-money-project.vercel.app/login)
 
----
+![Dashboard](./public/img/screenshots/dashboard.png)
 
-## ✨ Özellikler
+## 🧱 Kullanılan Teknolojiler
 
-- 💸 **Gelir & Gider Takibi** -- Tüm işlemlerini kolayca kaydet
-- 📊 **Dinamik Grafikler** -- Kategori bazlı harcama analizi
-- 🔍 **Filtreleme & Arama** -- Tarihe, kategoriye göre işlemleri
-  görüntüle\
-- 📱 **Responsive Tasarım** -- Mobil, tablet ve masaüstü uyumlu
-- 🌍 **Çoklu Para Birimi** -- Monobank API üzerinden güncel kurlarla
-  işlem yap\
-- 🎨 **Modern UI** -- Blur efektleri ve şık arayüz
+Aşağıdaki teknolojiler ile proje geliştirilmiştir:
 
----
+| Teknoloji             | Kullanım Amacı                              |
+| --------------------- | ------------------------------------------- |
+| **React**             | UI bileşenleri oluşturma                    |
+| **React Router**      | Sayfa yönlendirme ve route yönetimi         |
+| **Redux Toolkit**     | Global state (durum) yönetimi               |
+| **Monobank API**      | Döviz kurları ve finansal veri entegrasyonu |
+| **Chart.js**          | Grafik ve veri görselleştirme               |
+| **Vite**              | Hızlı geliştirme ve build aracı             |
+| **CSS / HTML**        | Stil ve temel yapı                          |
+| **npm**               | Paket yönetimi                              |
+| **ESLint / Prettier** | Kod stil standartları                       |
+| **Vercel**            | Deployment                                  |
 
-## 🚀 Canlı Uygulama
+## 🧠 Mimari / Teknik Detaylar
 
-👉 [Projeyi Görüntüle](https://guardians-of-money-project.vercel.app/login)
+📌 React + Vite
 
----
+Bu proje React fonksiyonel bileşenleri ve Vite tabanlı hızlı geliştirme aracını kullanır.
+Vite, build süresini kısaltır ve modüllerin hızlı yüklenmesini sağlar.
 
-## 🖼️ Ekran Görüntüleri
+📌 Bileşen Yapısı
 
-### 🏠 Dashboard
+- components/ → Yeniden kullanılabilir UI parçaları
+- pages/ → Uygulama sayfaları (Login, Register, Dashboard)
+- services/ → Veri işlemleri, API bağlantıları
 
-![Dashboard](./img/screenshots/dashboard.png)
+## 📊 Uygulama Özellikleri
 
-### 📑 Transactions
+Uygulama, temel finans yönetimi özelliklerini sunmaktadır.
 
-![Transactions](./img/screenshots/transactions.png)
+- Gelir ekleme ve gider ekleme
+- Gelir / gider listesi görüntüleme
+- Bütçe bakiyesi hesaplama
+- Kullanıcı arayüzü üzerinden finansal özet
 
-### 📈 Statistics
+## 🤝 Katkıda Bulunma
 
-![Statistics](./img/screenshots/statistics.png)
+Bu proje topluluk katkılarına açıktır!
+Katkıda bulunmak için:
 
----
-
-## 🛠️ Kullanılan Teknolojiler
-
-- **React**, **Redux Toolkit**, **React Router**
-- **Monobank API** (döviz kurları ve banka entegrasyonu)
-- **CSS Modules**
-- **Chart.js** (grafikler için)
-- **Vercel** (deployment)
-
----
-
-## 🙋‍♂️ Katkı Sağla
-
-1.  Yeni bir branch oluştur (`git checkout -b feature/yenilik`)
-2.  Değişiklik yap & commit et
-3.  Branch'i pushla (`git push origin feature/yenilik`)
-4.  Pull request oluştur
-
----
-
-> 💡 Money Guard ile finansal özgürlüğünü planla! 🚀
+1. Depoyu fork’la
+2. Yeni bir branch oluştur (feature/isim)
+3. Değişiklik yap ve commit’le
+4. Pull request gönder

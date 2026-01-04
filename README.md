@@ -14,16 +14,18 @@ Canlı demo: https://guardians-of-money-project.vercel.app/ :contentReference[oa
 
 Aşağıdaki teknolojiler ile proje geliştirilmiştir:
 
-| Teknoloji                                | Kullanım Amacı                      |
-| ---------------------------------------- | ----------------------------------- |
-| **React / React Router / Redux Toolkit** | UI bileşenleri oluşturma            |
-| **Monobank API**                         | Döviz kurları ve banka entegrasyonu |
-| **Chart.js**                             | Grafikler için                      |
-| **Vite**                                 | Hızlı geliştirme ve build aracı     |
-| **CSS / HTML**                           | Stil ve temel yapı                  |
-| **npm**                                  | Paket yönetimi                      |
-| **ESLint / Prettier**                    | Kod stil standartları               |
-| **Vercel**                               | Deployment                          |
+| Teknoloji             | Kullanım Amacı                              |
+| --------------------- | ------------------------------------------- |
+| **React**             | UI bileşenleri oluşturma                    |
+| **React Router**      | Sayfa yönlendirme ve route yönetimi         |
+| **Redux Toolkit**     | Global state (durum) yönetimi               |
+| **Monobank API**      | Döviz kurları ve finansal veri entegrasyonu |
+| **Chart.js**          | Grafik ve veri görselleştirme               |
+| **Vite**              | Hızlı geliştirme ve build aracı             |
+| **CSS / HTML**        | Stil ve temel yapı                          |
+| **npm**               | Paket yönetimi                              |
+| **ESLint / Prettier** | Kod stil standartları                       |
+| **Vercel**            | Deployment                                  |
 
 ## 🧠 Mimari / Teknik Detaylar
 

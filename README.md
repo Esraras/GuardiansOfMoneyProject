@@ -8,7 +8,7 @@ tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlay
 
 Canlı demo: https://guardians-of-money-project.vercel.app/ :contentReference[oaicite:0]{index=0}
 
-!(./public/img/screenshots/dashboard.png)
+![Dashboard](./public/img/screenshots/dashboard.png)
 
 ## 🧱 Kullanılan Teknolojiler
 
@@ -46,12 +46,6 @@ Uygulama, temel finans yönetimi özelliklerini sunmaktadır.
 - Gelir / gider listesi görüntüleme
 - Bütçe bakiyesi hesaplama
 - Kullanıcı arayüzü üzerinden finansal özet
-
-## 🚧 Geliştirme Notları
-
-Kod formatı ESLint ve Prettier ile standartlaştırılmıştır.
-UI bileşenleri modüler ve yeniden kullanılabilir şekilde tasarlanmıştır.
-Proje ileride backend entegrasyonu, state yönetimi (Redux/Context) ve grafik/istatistik eklentileri ile genişletilebilir.
 
 ## 🤝 Katkıda Bulunma
 

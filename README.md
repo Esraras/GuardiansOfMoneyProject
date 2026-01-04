@@ -12,11 +12,11 @@ tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlay
 
 ## ✨ Özellikler
 
-- 💸 **Gelir & Gider Takibi** -- Tüm işlemlerini kolayca kaydet\
-- 📊 **Dinamik Grafikler** -- Kategori bazlı harcama analizi\
+- 💸 **Gelir & Gider Takibi** -- Tüm işlemlerini kolayca kaydet
+- 📊 **Dinamik Grafikler** -- Kategori bazlı harcama analizi
 - 🔍 **Filtreleme & Arama** -- Tarihe, kategoriye göre işlemleri
   görüntüle\
-- 📱 **Responsive Tasarım** -- Mobil, tablet ve masaüstü uyumlu\
+- 📱 **Responsive Tasarım** -- Mobil, tablet ve masaüstü uyumlu
 - 🌍 **Çoklu Para Birimi** -- Monobank API üzerinden güncel kurlarla
   işlem yap\
 - 🎨 **Modern UI** -- Blur efektleri ve şık arayüz
@@ -47,19 +47,19 @@ tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlay
 
 ## 🛠️ Kullanılan Teknolojiler
 
-- **React**, **Redux Toolkit**, **React Router**\
-- **Monobank API** (döviz kurları ve banka entegrasyonu)\
-- **CSS Modules**\
-- **Chart.js** (grafikler için)\
+- **React**, **Redux Toolkit**, **React Router**
+- **Monobank API** (döviz kurları ve banka entegrasyonu)
+- **CSS Modules**
+- **Chart.js** (grafikler için)
 - **Vercel** (deployment)
 
 ---
 
 ## 🙋‍♂️ Katkı Sağla
 
-1.  Yeni bir branch oluştur (`git checkout -b feature/yenilik`)\
-2.  Değişiklik yap & commit et\
-3.  Branch'i pushla (`git push origin feature/yenilik`)\
+1.  Yeni bir branch oluştur (`git checkout -b feature/yenilik`)
+2.  Değişiklik yap & commit et
+3.  Branch'i pushla (`git push origin feature/yenilik`)
 4.  Pull request oluştur
 
 ---

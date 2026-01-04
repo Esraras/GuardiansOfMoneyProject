@@ -12,14 +12,12 @@ tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlay
 
 ## ✨ Özellikler
 
-- 💸 **Gelir & Gider Takibi** -- Tüm işlemlerini kolayca kaydet
-- 📊 **Dinamik Grafikler** -- Kategori bazlı harcama analizi
-- 🔍 **Filtreleme & Arama** -- Tarihe, kategoriye göre işlemleri
-  görüntüle\
-- 📱 **Responsive Tasarım** -- Mobil, tablet ve masaüstü uyumlu
-- 🌍 **Çoklu Para Birimi** -- Monobank API üzerinden güncel kurlarla
-  işlem yap\
-- 🎨 **Modern UI** -- Blur efektleri ve şık arayüz
+- 💸 **Gelir & Gider Takibi** - Tüm işlemlerini kolayca kaydet
+- 📊 **Dinamik Grafikler** - Kategori bazlı harcama analizi
+- 🔍 **Filtreleme & Arama** - Tarihe, kategoriye göre işlemleri görüntüle
+- 📱 **Responsive Tasarım** - Mobil, tablet ve masaüstü uyumlu
+- 🌍 **Çoklu Para Birimi** - Monobank API üzerinden güncel kurlarla işlem yap
+- 🎨 **Modern UI** - Blur efektleri ve şık arayüz
 
 ---
 
@@ -57,9 +55,9 @@ tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlay
 
 ## 🙋‍♂️ Katkı Sağla
 
-1.  Yeni bir branch oluştur (`git checkout -b feature/yenilik`)
+1.  Yeni bir branch oluştur (`git checkout -b feature/innovation`)
 2.  Değişiklik yap & commit et
-3.  Branch'i pushla (`git push origin feature/yenilik`)
+3.  Branch'i pushla (`git push origin feature/innovation`)
 4.  Pull request oluştur
 
 ---

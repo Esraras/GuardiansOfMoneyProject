@@ -34,18 +34,18 @@ Vite, build süresini kısaltır ve modüllerin hızlı yüklenmesini sağlar.
 
 📌 Bileşen Yapısı
 
-components/ → Yeniden kullanılabilir UI parçaları
-pages/ → Uygulama sayfaları (Login, Register, Dashboard)
-services/ → Veri işlemleri, API bağlantıları
+- components/ → Yeniden kullanılabilir UI parçaları
+- pages/ → Uygulama sayfaları (Login, Register, Dashboard)
+- services/ → Veri işlemleri, API bağlantıları
 
 ## 📊 Uygulama Özellikleri
 
 Uygulama, temel finans yönetimi özelliklerini sunmaktadır.
 
-🔹 Gelir ekleme ve gider ekleme
-🔹 Gelir / gider listesi görüntüleme
-🔹 Bütçe bakiyesi hesaplama
-🔹 Kullanıcı arayüzü üzerinden finansal özet
+- Gelir ekleme ve gider ekleme
+- Gelir / gider listesi görüntüleme
+- Bütçe bakiyesi hesaplama
+- Kullanıcı arayüzü üzerinden finansal özet
 
 ## 🚧 Geliştirme Notları
 

@@ -6,39 +6,36 @@ import "chart.js/auto";
 import { useSelector } from "react-redux";
 import styles from "./StatisticsChart.module.css";
 import {
-  selectTransactions,
-  selectTransLoading,
-  selectTransError,
-} from "../../redux/transactions/selectors";
+  selectSummary,
+  selectPeriodTotal,
+  selectStatLoading,
+} from "../../redux/Statistics/selectors";
 import { getTrasactionCategoryColor } from "../../constants/TransactionConstants";
 import LoadingSpinner from "../common/LoadingSpinner/Loader";
 
 const StatisticsChart = () => {
-  const isLoading = useSelector(selectTransLoading);
+  const isLoading = useSelector(selectStatLoading);
 
-  const balanceForSpecificPeriod = useSelector(selectTransactions)?.periodTotal;
+  const balanceForSpecificPeriod = useSelector(selectPeriodTotal);
 
   function formatNumber(balanceAmount) {
     if (balanceAmount === undefined || balanceAmount === null) return "0.00";
     return balanceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
 
-  const filteredCategories = useSelector(selectTransError) || [];
+  const filteredCategories = useSelector(selectSummary) || [];
 
-  const chartLabels =
-    filteredCategories?.length > 0
-      ? filteredCategories?.map((item) => item.name)
-      : ["There is no data for selected date"];
+  const chartLabels = filteredCategories.length
+    ? filteredCategories.map((item) => item.name)
+    : ["There is no data for selected date"];
 
-  const chartValues =
-    filteredCategories?.length > 0
-      ? filteredCategories?.map((item) => item.total * -1)
-      : [100];
+  const chartValues = filteredCategories.length
+    ? filteredCategories.map((item) => (item.total ? item.total * -1 : 0))
+    : [100];
 
-  const chartBackgroundColors =
-    filteredCategories?.length > 0
-      ? filteredCategories?.map((item) => getTrasactionCategoryColor(item.name))
-      : ["rgba(255, 255, 255, 0.6)"];
+  const chartBackgroundColors = filteredCategories.length
+    ? filteredCategories.map((item) => getTrasactionCategoryColor(item.name))
+    : ["rgba(255, 255, 255, 0.6)"];
 
   const chartData = {
     labels: chartLabels,

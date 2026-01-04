@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   summary: [],
+  periodTotal: 0,
   categories: [],
   isStatisticsLoading: false,
   isStatisticsError: null,
@@ -32,7 +33,14 @@ const slice = createSlice({
       })
       // getTransactionsSummaryByPeriod için extraReducers
       .addCase(getTransactionsSummaryByPeriod.fulfilled, (state, action) => {
-        state.summary = action.payload.categoriesSummary || [];
+        const payload = action.payload || {};
+        if (Array.isArray(payload)) {
+          state.summary = payload;
+          state.periodTotal = 0;
+        } else {
+          state.summary = payload.categoriesSummary || payload.categories || [];
+          state.periodTotal = payload.periodTotal || payload.total || 0;
+        }
         state.isStatisticsLoading = false;
         state.isStatisticsError = null;
       })

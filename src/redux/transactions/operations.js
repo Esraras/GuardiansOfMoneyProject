@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userTransactionsApi, setToken } from "../../api/userTransactionApi";
 import { getBalanceThunk } from "../auth/operations";
+import { getTransactionsSummaryByPeriod } from "../Statistics/operations";
 
 // Tüm işlemleri getirmek için thunk
 export const getTransactions = createAsyncThunk(
@@ -35,6 +36,8 @@ export const addTransactions = createAsyncThunk(
         transaction
       );
       await thunkApi.dispatch(getBalanceThunk());
+      // Refresh statistics for the current period after modifying transactions
+      await thunkApi.dispatch(getTransactionsSummaryByPeriod());
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -55,6 +58,8 @@ export const deleteTransactions = createAsyncThunk(
       await userTransactionsApi.delete(`/api/transactions/${id}`);
       await thunkApi.dispatch(getBalanceThunk());
       await thunkApi.dispatch(getTransactions());
+      // Refresh statistics after deletion
+      await thunkApi.dispatch(getTransactionsSummaryByPeriod());
       return id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -84,6 +89,8 @@ export const editTransactions = createAsyncThunk(
 
       await thunkApi.dispatch(getBalanceThunk());
       await thunkApi.dispatch(getTransactions());
+      // Refresh statistics after edit
+      await thunkApi.dispatch(getTransactionsSummaryByPeriod());
 
       return response.data;
     } catch (error) {

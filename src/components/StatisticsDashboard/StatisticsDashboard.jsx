@@ -5,7 +5,10 @@ import {
   Months_OPTIONS,
   YEARS_OPTIONS,
 } from "../../constants/TransactionConstants";
-import { getTransactions } from "../../redux/transactions/operations";
+import {
+  getTransactionsSummaryByPeriod,
+  getTransactionsCategories,
+} from "../../redux/Statistics/operations";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
@@ -14,12 +17,16 @@ const StatisticsDashboard = () => {
   const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    dispatch(getTransactions({ month, year }));
+    dispatch(getTransactionsSummaryByPeriod({ month: Number(month), year: Number(year) }));
   }, [month, year, dispatch]);
+
+  useEffect(() => {
+    dispatch(getTransactionsCategories());
+  }, [dispatch]);
 
   return (
     <div className={styles.dropdownsWrapper}>
-      <select value={month} onChange={(e) => setMonth(e.target.value)}>
+      <select value={month} onChange={(e) => setMonth(Number(e.target.value))}>
         {Months_OPTIONS.map((item) => (
           <option
             key={item.value}
@@ -28,7 +35,7 @@ const StatisticsDashboard = () => {
           ></option>
         ))}
       </select>
-      <select value={year} onChange={(e) => setYear(e.target.value)}>
+      <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
         {YEARS_OPTIONS.map((item) => (
           <option key={item} value={item}>
             {item}

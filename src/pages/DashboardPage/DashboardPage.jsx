@@ -9,6 +9,9 @@ import StaticsTab from "../../components/Tabs/StatisticsTab/StatisticsTab";
 import Balance from "../../components/Balance/Balance";
 import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction";
 import ModalEditTransaction from "../../components/ModalEditTransaction/ModalEditTransaction";
+import CurrencyTab from "../../components/Tabs/CurrencyTab/CurrencyTab.jsx";
+import CryptoChart from "../../components/CryptoChart/CryptoChart.jsx";
+
 
 
 const DashboardPage = () => {
@@ -21,41 +24,49 @@ const DashboardPage = () => {
             case "statistics":
                 return <StaticsTab />;
             case "currency":
-                return <CurrencyAreaChart />;
+                return (
+                    <>
+                        <CurrencyTab />
+                        <CurrencyAreaChart />
+                        <CryptoChart />
+                    </>
+                );
             default:
                 return <HomeTab />;
         }
     };
 
-    return (
-        <>
-            <Header />
-            <div className={css.dashboardContainer}>
-                <div className={css.sideBar}>
-                    <div className={css.navBalance}>
-                        <Navigation
-                            activeTab={activeTab}
-                            onChange={setActiveTab}
-                        />
-                        <div className={css.balance}>
-                            <Balance />
-                        </div>
-                    </div>
-                    <div className={css.currencyChart}>
-                        <CurrencyAreaChart />
-                    </div>
-                </div>
+return (
+  <>
+    <Header />
+    <div className={css.dashboardContainer}>
+      <div className={css.sideBar}>
+        <div className={css.navBalance}>
+          <Navigation
+            activeTab={activeTab}
+            onChange={setActiveTab}
+          />
+          <div className={css.balance}>
+            <Balance />
+          </div>
+        </div>
+        <div className={css.currencyChart}>
+          <CurrencyTab />
+          <CurrencyAreaChart />
+          <CryptoChart />
+        </div>
+      </div>
+      <div className={css.divider}></div>
+      <div className={css.mainContent}>
+        {renderContent()}
+        <ButtonAddTransactions />
+      </div>
+      <ModalAddTransaction />
+      <ModalEditTransaction />
+    </div>
+  </>
+);
 
-            <div className={css.divider}></div>
-                <div className={css.mainContent}>
-                    {renderContent()}
-                    <ButtonAddTransactions />
-                </div>
-                <ModalAddTransaction />
-                <ModalEditTransaction />
-            </div>
-        </>
-    );
 };
 
 export default DashboardPage;

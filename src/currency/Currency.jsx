@@ -5,6 +5,7 @@ import { fetchCurrencyRates } from '../redux/currency/operations';
 
 import s from './Currency.module.css';
 import imageTab from '../../public/img/currency.png';
+import useMedia from '../hooks/useMedia';
 
 const BASE_KEY = 'currencyTrendBaseline';
 
@@ -13,6 +14,8 @@ const Currency = () => {
 
   const rates = useSelector(state => state.currency.rates);
   const isLoading = useSelector(state => state.currency.isLoading);
+
+  const { isDesktop } = useMedia();
 
   const [baseline, setBaseline] = useState(null);
 
@@ -117,11 +120,15 @@ const Currency = () => {
         </ul>
       </div>
 
-      <div className={s.diagram}>
-        <p className={s.lowerNumber}>{rateBuyDollar}</p>
-        <p className={s.higherNumber}>{rateBuyEuro}</p>
+      {isDesktop ? (
+        <div className={s.diagram}>
+          <p className={s.lowerNumber}>{rateBuyDollar}</p>
+          <p className={s.higherNumber}>{rateBuyEuro}</p>
+          <img src={imageTab} alt="" />
+        </div>
+      ) : (
         <img src={imageTab} alt="" />
-      </div>
+      )}
     </div>
   );
 };

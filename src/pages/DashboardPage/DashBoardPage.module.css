@@ -33,7 +33,8 @@
     }
 
     .balance {
-        display: none;
+        display: flex;
+        justify-content: center;
     }
 
     .currencyTab {

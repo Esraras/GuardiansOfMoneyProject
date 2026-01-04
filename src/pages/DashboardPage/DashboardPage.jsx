@@ -8,7 +8,7 @@ import StaticsTab from "../../components/Tabs/StatisticsTab/StatisticsTab";
 import Balance from "../../components/Balance/Balance";
 import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction";
 import ModalEditTransaction from "../../components/ModalEditTransaction/ModalEditTransaction";
-import CurrencyTab from "../../components/Tabs/CurrencyTab/CurrencyTab.jsx";
+import CurrencyTab from "../../currency/Currency.jsx";
 
 const DashboardPage = () => {
     const [activeTab, setActiveTab] = useState("home");

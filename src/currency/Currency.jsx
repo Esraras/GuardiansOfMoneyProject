@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchCurrencyRates } from '../redux/currency/currencyOperations';
+import { fetchCurrencyRates } from '../redux/currency/operations';
 
 import s from './Currency.module.css';
 import imageTab from '../../public/img/currency.png';

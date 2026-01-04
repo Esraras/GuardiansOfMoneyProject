@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getCurrencyRates } from "../../api/currencyApi.js";
-import { MOCK_RATES } from "./currencySlice.js";
+import { MOCK_RATES } from "./slice.js";
 
 export const fetchCurrencyRates = createAsyncThunk(
   "currency/fetchCurrencyRates",

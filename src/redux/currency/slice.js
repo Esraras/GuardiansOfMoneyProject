@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCurrencyRates } from "./currencyOperations.js";
+import { fetchCurrencyRates } from "./operations.js";
 
 export const MOCK_RATES = [
   { currencyCodeA: 840, currencyCodeB: 980, rateBuy: 37.0, rateSell: 37.5 }, // USD

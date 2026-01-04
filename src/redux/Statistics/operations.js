@@ -10,7 +10,21 @@ export const getTransactionsSummaryByPeriod = createAsyncThunk(
   "statistics/getTransactionsSummaryByPeriod",
   async (params, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.token;
+      let token = thunkAPI.getState().auth.token;
+      // If Redux rehydration hasn't run yet, try to read persisted token from localStorage
+      if (!token) {
+        try {
+          const savedDataLocal = JSON.parse(localStorage.getItem("persist:auth"));
+          const savedToken =
+            savedDataLocal?.token === "null"
+              ? null
+              : savedDataLocal?.token?.slice(1, -1);
+          token = savedToken || null;
+        } catch (err) {
+          token = null;
+        }
+      }
+
       if (!token) {
         throw new Error("No token found");
       }
@@ -28,7 +42,20 @@ export const getTransactionsCategories = createAsyncThunk(
   "statistics/getTransactionsCategories",
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.token;
+      let token = thunkAPI.getState().auth.token;
+      if (!token) {
+        try {
+          const savedDataLocal = JSON.parse(localStorage.getItem("persist:auth"));
+          const savedToken =
+            savedDataLocal?.token === "null"
+              ? null
+              : savedDataLocal?.token?.slice(1, -1);
+          token = savedToken || null;
+        } catch (err) {
+          token = null;
+        }
+      }
+
       if (!token) {
         throw new Error("No token found");
       }

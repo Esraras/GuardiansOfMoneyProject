@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { openAddModal } from "../../redux/Modals/slice";
 import TransactionItem from "../TransactionsItem/TransactionsItem";
@@ -11,6 +11,7 @@ import {
   selectTransError,
 } from "../../redux/transactions/selectors";
 import { selectCategories } from "../../redux/Statistics/selectors";
+import { getTransactionsCategories } from "../../redux/Statistics/operations";
 import { getFormattedTransactions } from "../../helpers/transactionsFormatter";
 import useMedia from "../../hooks/useMedia.jsx";
 
@@ -21,6 +22,12 @@ const TransactionList = () => {
   const categories = useSelector(selectCategories);
   const { isMobile } = useMedia();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!categories || categories.length === 0) {
+      dispatch(getTransactionsCategories());
+    }
+  }, [categories, dispatch]);
 
   const [sortConfig, setSortConfig] = useState({
     key: "date",

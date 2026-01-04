@@ -4,7 +4,6 @@ import TransactionList from "../../TransactionsList/TransactionsList";
 import Balance from "../../Balance/Balance";
 import { getTransactions } from "../../../redux/transactions/operations";
 import Navigation from "../../Navigation/Navigation";
-import CurrencyAreaChart from "../../CurrencyAreaChart/CurrencyAreaChart";
 import styles from "./HomeTab.module.css";
 
 const HomeTab = () => {

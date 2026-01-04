@@ -31,15 +31,15 @@ tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlay
 
 ### 🏠 Dashboard
 
-![Dashboard](./img/screenshots/dashboard.png)
+![Dashboard](./public/img/screenshots/dashboard.png)
 
 ### 📑 Transactions
 
-![Transactions](./img/screenshots/transactions.png)
+![Transactions](./public/img/screenshots/transactions.png)
 
 ### 📈 Statistics
 
-![Statistics](./img/screenshots/statistics.png)
+![Statistics](./public/img/screenshots/statistics.png)
 
 ---
 

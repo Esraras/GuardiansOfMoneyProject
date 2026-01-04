@@ -8,7 +8,7 @@ const Header = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const user = useSelector(selectUser);
-  localStorage.setItem("token", showLogoutModal);
+  const displayName = user?.email ? user.email.split("@")[0] : "";
 
   function LogoutHandle() {
     setShowLogoutModal(true);
@@ -24,7 +24,7 @@ const Header = () => {
         </div>
 
         <div className={css.userActions}>
-          <span className={css.userName}>{user.name}</span>
+          <span className={css.userName}>{displayName}</span>
           <div className={css.divider}></div>
           <button className={css.exitBtn} onClick={LogoutHandle}>
             <Icon id="#icon-exit" className={css.iconExit} />

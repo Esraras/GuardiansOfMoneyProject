@@ -23,7 +23,6 @@
 
 @media (min-width: 768px) {
     .dashboardContainer {
-        align-items: flex-start;
         padding: 20px;
     }
 
@@ -34,8 +33,7 @@
     }
 
     .balance {
-        display: flex;
-        justify-content: center;
+        display: none;
     }
 
     .currencyTab {
@@ -43,7 +41,7 @@
         flex-direction: column;
         gap: 16px;
         width: 100%;
-        max-width: 420px;
+        max-width: 100%;
         margin-left: 20px;
     }
 }

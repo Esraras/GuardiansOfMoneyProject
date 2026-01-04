@@ -69,7 +69,6 @@ img {
   font-weight: 400;
 }
 
-/* 🔥 Trend renkleri (senin tasarıma uygun) */
 .trendUp {
   color: #2ecc71; /* yeşil */
   transition: color 0.25s ease;
@@ -80,7 +79,6 @@ img {
   transition: color 0.25s ease;
 }
 
-/* İsteğe bağlı: küçük bir parlama efekti */
 .trendUp,
 .trendDown {
   font-weight: 600;

@@ -6,7 +6,7 @@
 **Money Guard**, GuardiansOfMoneyProject
 tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlayan kullanıcı dostu bir finans yönetim platformudur. Bütçenizi yönetin ve finansal durumunuzu tek bir yerden kontrol altında tutun. 📊
 
-![Money Guard Dashboard](./img/screenshots/dashboard.png)
+![Money Guard Dashboard](./public/img/screenshots/dashboard.png)
 
 ---
 

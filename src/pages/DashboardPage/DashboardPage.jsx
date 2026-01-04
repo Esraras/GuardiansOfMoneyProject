@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Header from "../../components/Header/Header";
 import ButtonAddTransactions from "../../components/ButtonAddTransactions/ButtonAddTransactions";
-import CurrencyAreaChart from "../../components/CurrencyAreaChart/CurrencyAreaChart";
 import css from "./DashBoardPage.module.css";
 import Navigation from "../../components/Navigation/Navigation";
 import HomeTab from "../../components/Tabs/HomeTab/HomeTab";
@@ -9,8 +8,7 @@ import StaticsTab from "../../components/Tabs/StatisticsTab/StatisticsTab";
 import Balance from "../../components/Balance/Balance";
 import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction";
 import ModalEditTransaction from "../../components/ModalEditTransaction/ModalEditTransaction";
-import CurrencyTab from "../../components/Tabs/CurrencyTab/CurrencyTab.jsx";
-import CryptoChart from "../../components/CryptoChart/CryptoChart.jsx";
+import Currency from "../../currency/Currency";
 
 
 
@@ -26,9 +24,7 @@ const DashboardPage = () => {
             case "currency":
                 return (
                     <>
-                        <CurrencyTab />
-                        <CurrencyAreaChart />
-                        <CryptoChart />
+                        <Currency />
                     </>
                 );
             default:
@@ -51,9 +47,7 @@ return (
           </div>
         </div>
         <div className={css.currencyChart}>
-          <CurrencyTab />
-          <CurrencyAreaChart />
-          <CryptoChart />
+          <Currency />
         </div>
       </div>
       <div className={css.divider}></div>

@@ -3,10 +3,10 @@
 [![LiveDemo](https://img.shields.io/badge/Live%20Demo-Online-green?style=flat&logo=vercel)](https://guardians-of-money-project.vercel.app/login)\
 [![GitHub](https://img.shields.io/badge/Repo-GitHub-blue?style=flat&logo=github)](https://github.com/Esraras/GuardiansOfMoneyProject)
 
-**Money Guard**, GuardiansOfMoneyProject
+**Money Guard**, GuardiansOfMoney
 tarafından geliştirilen, gelir ve giderlerinizi kolayca takip etmenizi sağlayan kullanıcı dostu bir finans yönetim platformudur. Bütçenizi yönetin ve finansal durumunuzu tek bir yerden kontrol altında tutun. 📊
 
-Canlı demo: https://guardians-of-money-project.vercel.app/ :contentReference[oaicite:0]{index=0}
+Canlı demo: [Projeyi Görüntüle](https://guardians-of-money-project.vercel.app/login)
 
 ![Dashboard](./public/img/screenshots/dashboard.png)
 

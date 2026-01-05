@@ -124,10 +124,12 @@ const Currency = () => {
         <div className={s.diagram}>
           <p className={s.lowerNumber}>{rateBuyDollar}</p>
           <p className={s.higherNumber}>{rateBuyEuro}</p>
-          <img src={imageTab} alt="" />
+          <img src={imageTab} alt="" className={s.currencyImage} />
+
         </div>
       ) : (
-        <img src={imageTab} alt="" />
+        <img src={imageTab} alt="" className={s.currencyImage} />
+
       )}
     </div>
   );

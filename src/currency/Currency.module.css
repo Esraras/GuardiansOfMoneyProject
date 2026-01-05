@@ -43,7 +43,7 @@
   margin-left: 20px;
 }
 
-img {
+.currencyImage {
   width: 320px;
 }
 
@@ -106,7 +106,7 @@ img {
     justify-content: space-around;
   }
 
-  img {
+  .currencyImage {
     width: 336px;
     height: 88px;
   }
@@ -145,7 +145,7 @@ img {
     margin: 0;
   }
 
-  img {
+  .currencyImage {
     width: 480px;
     height: 167px;
   }

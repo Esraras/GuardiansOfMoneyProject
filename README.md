@@ -58,3 +58,5 @@ Katkıda bulunmak için:
 2. Yeni bir branch oluştur (feature/isim)
 3. Değişiklik yap ve commit’le
 4. Pull request gönder
+# guardiansofmoneyproject
+# guardiansofmoneyproject
